@@ -113,15 +113,15 @@ post '/callback' do
     case event.type
     # when receive a text message
     when Line::Bot::Event::MessageType::Text
-      # user_id = event['source']['userId']
-      # response = client.get_profile(user_id)
-      # if response.class == Net::HTTPOK
-      #   contact = JSON.parse(response.body)
-      #   p contact
-      # else
-      #   # Can't retrieve the contact info
-      #   p "#{response.code} #{response.body}"
-      # end
+      user_id = event['source']['userId']
+      response = client.get_profile(user_id)
+      if response.class == Net::HTTPOK
+        contact = JSON.parse(response.body)
+        p contact
+      else
+        # Can't retrieve the contact info
+        p "#{response.code} #{response.body}"
+      end
 
       if event.message['text'].downcase == 'hello, world'
         # Sending a message when LINE tries to verify the webhook
