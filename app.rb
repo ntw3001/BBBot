@@ -138,7 +138,7 @@ post '/callback' do
           event
         )
       end
-      # when receive an image message
+    end
   end
   'OK'
 end
