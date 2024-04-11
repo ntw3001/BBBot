@@ -128,7 +128,7 @@ post '/callback' do
       else
         # The answer mechanism is here!
         send_bot_message(
-          bot_answer_to(event.message['text']),
+          bot_answer_to(event.message['text'].downcase),
           client,
           event
         )
