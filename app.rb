@@ -84,7 +84,7 @@ def send_bot_message(message, client, event)
   p event['replyToken']
   p client
 
-  message = { type: 'text', text: message.downcase }
+  message = { type: 'text', text: message }
   p message
 
   client.reply_message(event['replyToken'], message)
@@ -138,15 +138,15 @@ post '/callback' do
         )
       end
       # when receive an image message
-    when Line::Bot::Event::MessageType::Image
-      response_image = client.get_message_content(event.message['id'])
-      fetch_imagga(response_image) do |image_results|
-        # Sending the image results
-        send_bot_message(
-          "Looking at that picture, the first words that come to me are #{image_results[0..1].join(', ')} and #{image_results[2]}. Pretty good, eh?",
-          client,
-          event
-        )
+    # when Line::Bot::Event::MessageType::Image
+    #   response_image = client.get_message_content(event.message['id'])
+    #   fetch_imagga(response_image) do |image_results|
+    #     # Sending the image results
+    #     send_bot_message(
+    #       "Looking at that picture, the first words that come to me are #{image_results[0..1].join(', ')} and #{image_results[2]}. Pretty good, eh?",
+    #       client,
+    #       event
+    #     )
       end
     end
   end
