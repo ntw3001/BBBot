@@ -92,7 +92,7 @@ def send_bot_message(message, client, event)
 end
 
 get '/' do
-  "Up and running!"
+  "Blood and Bowl!"
 end
 
 post '/callback' do
@@ -112,8 +112,8 @@ post '/callback' do
     case event.type
     # when receive a text message
     when Line::Bot::Event::MessageType::Text
-      user_id = event['source']['userId']
-      response = client.get_profile(user_id)
+      # user_id = event['source']['userId']
+      # response = client.get_profile(user_id)
       if response.class == Net::HTTPOK
         contact = JSON.parse(response.body)
         p contact
@@ -138,17 +138,17 @@ post '/callback' do
         )
       end
       # when receive an image message
-    when Line::Bot::Event::MessageType::Image
-      response_image = client.get_message_content(event.message['id'])
-      fetch_imagga(response_image) do |image_results|
-        # Sending the image results
-        send_bot_message(
-          "Looking at that picture, the first words that come to me are #{image_results[0..1].join(', ')} and #{image_results[2]}. Pretty good, eh?",
-          client,
-          event
-        )
-      end
-    end
+    # when Line::Bot::Event::MessageType::Image
+    #   response_image = client.get_message_content(event.message['id'])
+    #   fetch_imagga(response_image) do |image_results|
+    #     # Sending the image results
+    #     send_bot_message(
+    #       "Looking at that picture, the first words that come to me are #{image_results[0..1].join(', ')} and #{image_results[2]}. Pretty good, eh?",
+    #       client,
+    #       event
+    #     )
+    #   end
+    # end
   end
   'OK'
 end
