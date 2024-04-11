@@ -17,8 +17,7 @@ def client
   end
 end
 
-def bot_answer_to(query)
-  # a_question = query.downcase
+def bot_answer_to(a_question)
   if a_question.match?("weather")
     "2: Sweltering heat
     Roll a D6 for each player on the pitch at the end of a drive. On a roll of 1 the player collapses and may not be set up for the next kick-off.
@@ -134,6 +133,17 @@ post '/callback' do
         # The answer mechanism is here!
         send_bot_message(
           bot_answer_to(event.message['text']),
+          client,
+          event
+        )
+      end
+      # when receive an image message
+    when Line::Bot::Event::MessageType::Image
+      response_image = client.get_message_content(event.message['id'])
+      fetch_imagga(response_image) do |image_results|
+        # Sending the image results
+        send_bot_message(
+          "Looking at that picture, the first words that come to me are #{image_results[0..1].join(', ')} and #{image_results[2]}. Pretty good, eh?",
           client,
           event
         )
