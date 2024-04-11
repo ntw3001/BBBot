@@ -17,10 +17,11 @@ def client
   end
 end
 
-def bot_answer_to(a_question)
+def bot_answer_to(query)
+  a_question = query.downcase
   if a_question.match?("weather")
     "2: Sweltering heat
-    It's so hot and humid that some players collapse from heat exhaustion. Roll a D6 for each player on the pitch at the end of a drive. On a roll of 1 the player collapses and may not be set up for the next kick-off.
+    Roll a D6 for each player on the pitch at the end of a drive. On a roll of 1 the player collapses and may not be set up for the next kick-off.
     3: Very sunny
     A glorious day, but the blinding sunshine causes a -1 modifier on all passing rolls.
     4-10: Perfect Conditions
@@ -74,7 +75,7 @@ def bot_answer_to(a_question)
     12: Blizzard
     Freezing conditions and heavy falls of snow make the footing treacherous. Apply a -1 modifier every time a player attempts to Rush an extra square. Additionally, the poor visibility means that only Quick and Short passes can be attempted."
   else
-    "Please just say Spring, Summer, Autumn, Winter, or Weather"
+    "Please just say Spring, Summer, Autumn/Fall, Winter, or Weather"
   end
 end
 
@@ -84,7 +85,7 @@ def send_bot_message(message, client, event)
   p event['replyToken']
   p client
 
-  message = { type: 'text', text: message }
+  message = { type: 'text', text: message.downcase }
   p message
 
   client.reply_message(event['replyToken'], message)
@@ -112,15 +113,15 @@ post '/callback' do
     case event.type
     # when receive a text message
     when Line::Bot::Event::MessageType::Text
-      user_id = event['source']['userId']
-      response = client.get_profile(user_id)
-      if response.class == Net::HTTPOK
-        contact = JSON.parse(response.body)
-        p contact
-      else
-        # Can't retrieve the contact info
-        p "#{response.code} #{response.body}"
-      end
+      # user_id = event['source']['userId']
+      # response = client.get_profile(user_id)
+      # if response.class == Net::HTTPOK
+      #   contact = JSON.parse(response.body)
+      #   p contact
+      # else
+      #   # Can't retrieve the contact info
+      #   p "#{response.code} #{response.body}"
+      # end
 
       if event.message['text'].downcase == 'hello, world'
         # Sending a message when LINE tries to verify the webhook
@@ -138,17 +139,17 @@ post '/callback' do
         )
       end
       # when receive an image message
-    when Line::Bot::Event::MessageType::Image
-      response_image = client.get_message_content(event.message['id'])
-      fetch_imagga(response_image) do |image_results|
-        # Sending the image results
-        send_bot_message(
-          "Looking at that picture, the first words that come to me are #{image_results[0..1].join(', ')} and #{image_results[2]}. Pretty good, eh?",
-          client,
-          event
-        )
-      end
-    end
+    # when Line::Bot::Event::MessageType::Image
+    #   response_image = client.get_message_content(event.message['id'])
+    #   fetch_imagga(response_image) do |image_results|
+    #     # Sending the image results
+    #     send_bot_message(
+    #       "Looking at that picture, the first words that come to me are #{image_results[0..1].join(', ')} and #{image_results[2]}. Pretty good, eh?",
+    #       client,
+    #       event
+    #     )
+    #   end
+    # end
   end
   'OK'
 end
