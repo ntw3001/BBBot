@@ -30,7 +30,7 @@ def bot_answer_to(table, roll)
     else
       "2: Sweltering heat\nIt's so hot and humid that some players collapse from heat exhaustion. Roll a D6 for each player on the pitch at the end of a drive. On a roll of 1 the player collapses and may not be set up for the next kick-off.\n\n3: Very sunny\nA glorious day, but the blinding sunshine causes a -1 modifier on all passing rolls.\n\n4-10: Perfect Conditions\nNeither too cold nor too hot. A warm, dry and slightly overcast day provides perfect conditions to Blood Bowl.\n\n11: Pouring rain\nIt's raining, making the ball slippery and difficult to hold. A -1 modifier applies to all catch, intercept, or pick-up rolls.\n\n12: Blizzard\nIt's cold and snowing! The ice on the pitch means that any player attempting to move an extra square (GFI) will slip and be Knocked Down on a roll of 1-2, while the snow means that only quick or short passes can be attempted."
     end
-  when"spring"
+  when "spring"
     case roll
     when 2
       "2: Morning Dew\nThe pitch is dew-covered from the cold of night, making everything a little slippery. Apply a -1 modifier every time a player attempts to Rush an extra square. Additionally, apply a -1 modifier every time a player makes an Agility test to pick up the ball."
@@ -182,6 +182,7 @@ def bot_answer_to(table, roll)
     end
   else
     "Send a request in the format '[table] [number]'. For example, send 'summer 6'. For the full summer table, send 'summer'. The available tables are:\n\nweather\nspring\nsummer\nautumn\nwintern\kickoff\nprayers\ninjury\ncasualty"
+  end
 end
 
 def send_bot_message(message, client, event)
