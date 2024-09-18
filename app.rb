@@ -282,8 +282,7 @@ def bot_answer_to(table, roll)
       response << available_stars
     end
   when "chaosdwarf", "chorf"
-      available_stars = find_available_stars(stars, roll, "Favoured of Hashut", "Badlands Brawl", "Any")
-      response << available_stars
+      response << "#{table}s are losers"
   else
     response << "Send a request in the format '[table] [number]'. For example, send 'summer 6'. For star players, send '[team] [cash]'."
   end
@@ -526,10 +525,9 @@ def find_available_stars(stars, roll, *rules)
     star[:cost] <= roll && rules.any? { |rule| star[:rules].include?(rule) } && !(star[:name] == "Morg 'n' Thorg" && !rules.include?("Sylvanian Spotlight"))
   end
 
-  if available_stars.empty?
-    return "No available stars for this selection."
-  else
-    return available_stars.map { |star| "#{star[:name]}: #{star[:cost]}k." }.join("\n")
+  return "No available stars for this selection." if available_stars.empty?
+
+  available_stars.map { |star| "#{star[:name]}: #{star[:cost]}k." }.join("\n")
   end
 
 end
