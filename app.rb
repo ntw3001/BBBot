@@ -291,7 +291,7 @@ def bot_answer_to(table, roll)
   else
     response << "Send a request in the format '[table] [number]'. For example, send 'summer 6'. For star players, send '[team] [cash]'."
   end
-  response.join("\n") unless response.empty?
+  response.join("\n")
 end
 
 stars = [
