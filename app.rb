@@ -14,7 +14,6 @@ def client
 end
 
 def bot_answer_to(table, roll)
-  STDERR.puts "Received table: #{table}, roll: #{roll}"
   return "Please provide a valid roll or petty cash value." if roll.nil? || roll.to_i.zero?
 
   response = []
@@ -196,47 +195,88 @@ def bot_answer_to(table, roll)
     response << injury_response
   when "amazon", "lizardmen", "slann", "kislev", "kislevcircus"
     available_stars = find_available_stars(stars, roll, "Lustrian Superleague", "Any")
-    response << available_stars unless available_stars.nil? || available_stars.empty?
+    if available_stars.nil? || available_stars.empty?
+      response << "No available stars for this selection."
+    else
+      response << available_stars
+    end
   when "blackorc", "goblin", "orc"
     available_stars = find_available_stars(stars, roll, "Badlands Brawl", "Any")
-    response << available_stars unless available_stars.nil? || available_stars.empty?
+    if available_stars.nil? || available_stars.empty?
+      response << "No available stars for this selection."
+    else
+      response << available_stars
+    end
   when "chaos", "chosen", "chaoschosen", "renegade", "chaosrenegade"
     available_stars = find_available_stars(stars, roll, "Favoured of...", "Favoured of Nurgle", "Favoured of Tzeentch", "Favoured of Slaanesh", "Favoured of Khorne", "Favoured of Undivided", "Any")
-    response << available_stars unless available_stars.nil? || available_stars.empty?
-  when "darkelf", "elvenunion", "elf", "proelf", "highelf", "woodelf"
+    if available_stars.nil? || available_stars.empty?
+      response << "No available stars for this selection."
+    else
+      response << available_stars
+    end  when "darkelf", "elvenunion", "elf", "proelf", "highelf", "woodelf"
     available_stars = find_available_stars(stars, roll, "Elven Kingdoms League", "Any")
     response << available_stars unless available_stars.nil? || available_stars.empty?
   when "dwarf"
     available_stars = find_available_stars(stars, roll, "Worlds Edge Superleague", "Any")
-    response << available_stars unless available_stars.nil? || available_stars.empty?
-  when "gnome"
-    available_stars = find_available_stars(stars, roll, "Halfling Thimble Cup", "Any")
-    response << available_stars unless available_stars.nil? || available_stars.empty?
-  when "halfling", "human"
-    available_stars = find_available_stars(stars, roll, "Halfling Thimble Cup", "Old World Classic", "Any")
-    response << available_stars unless available_stars.nil? || available_stars.empty?
-  when "nobility", "imperial", "imperialnobility", "ogre", "oldworldalliance", "oldworld", "owa"
-    available_stars = find_available_stars(stars, roll, "Old World Classic", "Any")
-    response << available_stars unless available_stars.nil? || available_stars.empty?
-  when "khorne"
-    available_stars = find_available_stars(stars, roll, "Favoured of Khorne", "Any")
-    response << available_stars unless available_stars.nil? || available_stars.empty?
-  when "necromantic", "necro", "necromantichorror", "shamblingundead", "undead", "vampire", "khemri", "tombkings"
-    available_stars = find_available_stars(stars, roll, "Sylvanian Spotlight", "Any")
-    response << available_stars unless available_stars.nil? || available_stars.empty?
-  when "norse"
-    available_stars = find_available_stars(stars, roll, "Favoured of Undivided", "Favoured of Khorne", "Old World Classic", "Any")
-    response << available_stars unless available_stars.nil? || available_stars.empty?
-  when "nurgle"
-    available_stars = find_available_stars(stars, roll, "Favoured of Nurgle", "Any")
-    response << available_stars unless available_stars.nil? || available_stars.empty?
-  when "snotling", "skaven", "underworld", "underworlddenizens", "ud"
-    available_stars = find_available_stars(stars, roll, "Underworld Challenge", "Any")
-    response << available_stars unless available_stars.nil? || available_stars.empty?
-  when "chaosdwarf", "chorf"
-    available_stars = find_available_stars(stars, roll, "Favoured of Hashut", "Badlands Brawl", "Any")
-    response << available_stars unless available_stars.nil? || available_stars.empty?
+  if available_stars.nil? || available_stars.empty?
+    response << "No available stars for this selection."
   else
+    response << available_stars
+  end  when "gnome"
+    available_stars = find_available_stars(stars, roll, "Halfling Thimble Cup", "Any")
+  if available_stars.nil? || available_stars.empty?
+    response << "No available stars for this selection."
+  else
+    response << available_stars
+  end  when "halfling", "human"
+    available_stars = find_available_stars(stars, roll, "Halfling Thimble Cup", "Old World Classic", "Any")
+  if available_stars.nil? || available_stars.empty?
+    response << "No available stars for this selection."
+  else
+    response << available_stars
+  end  when "nobility", "imperial", "imperialnobility", "ogre", "oldworldalliance", "oldworld", "owa"
+    available_stars = find_available_stars(stars, roll, "Old World Classic", "Any")
+  if available_stars.nil? || available_stars.empty?
+    response << "No available stars for this selection."
+  else
+    response << available_stars
+  end  when "khorne"
+    available_stars = find_available_stars(stars, roll, "Favoured of Khorne", "Any")
+  if available_stars.nil? || available_stars.empty?
+    response << "No available stars for this selection."
+  else
+    response << available_stars
+  end  when "necromantic", "necro", "necromantichorror", "shamblingundead", "undead", "vampire", "khemri", "tombkings"
+    available_stars = find_available_stars(stars, roll, "Sylvanian Spotlight", "Any")
+  if available_stars.nil? || available_stars.empty?
+    response << "No available stars for this selection."
+  else
+    response << available_stars
+  end  when "norse"
+    available_stars = find_available_stars(stars, roll, "Favoured of Undivided", "Favoured of Khorne", "Old World Classic", "Any")
+  if available_stars.nil? || available_stars.empty?
+    response << "No available stars for this selection."
+  else
+    response << available_stars
+  end  when "nurgle"
+    available_stars = find_available_stars(stars, roll, "Favoured of Nurgle", "Any")
+  if available_stars.nil? || available_stars.empty?
+    response << "No available stars for this selection."
+  else
+    response << available_stars
+  end  when "snotling", "skaven", "underworld", "underworlddenizens", "ud"
+    available_stars = find_available_stars(stars, roll, "Underworld Challenge", "Any")
+  if available_stars.nil? || available_stars.empty?
+    response << "No available stars for this selection."
+  else
+    response << available_stars
+  end  when "chaosdwarf", "chorf"
+    available_stars = find_available_stars(stars, roll, "Favoured of Hashut", "Badlands Brawl", "Any")
+  if available_stars.nil? || available_stars.empty?
+    response << "No available stars for this selection."
+  else
+    response << available_stars
+  end  else
     response << "Send a request in the format '[table] [number]'. For example, send 'summer 6'. For star players, send '[team] [cash]'."
   end
   response.join("\n") unless response.empty?
