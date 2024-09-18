@@ -201,6 +201,7 @@ def bot_answer_to(table, roll)
       response << available_stars
     end
   when "blackorc", "goblin", "orc"
+    response << "goblin eh"
     available_stars = find_available_stars(stars, roll, "Badlands Brawl", "Any")
     if available_stars.nil? || available_stars.empty?
       response << "No available stars for this selection."
