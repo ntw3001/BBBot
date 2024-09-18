@@ -286,7 +286,7 @@ def bot_answer_to(table, roll)
     if available_stars.nil? || available_stars.empty?
       response << "No available stars for #{table}."
     else
-      response << available_stars
+      response.concat(available_stars)
     end
   else
     response << "Send a request in the format '[table] [number]'. For example, send 'summer 6'. For star players, send '[team] [cash]'."
@@ -531,7 +531,7 @@ def find_available_stars(stars, roll, *rules)
   end
 
   if available_stars.empty?
-    return "No available stars for this selection."
+    return []
   else
     return available_stars.map { |star| "#{star[:name]}: #{star[:cost]}k." }.join("\n")
   end
