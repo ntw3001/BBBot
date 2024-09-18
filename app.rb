@@ -14,6 +14,18 @@ def client
 end
 
 def bot_answer_to(table, roll)
+  p "Received table: #{table}, roll: #{roll}"
+
+  return "Please provide a valid roll or petty cash value." if roll.nil? || roll.to_i.zero?
+
+  def find_available_stars(stars, roll, *rules)
+    available_stars = stars.select do |star|
+      star[:cost] <= roll && rules.any? { |rule| star[:rules].include?(rule) }
+    end
+
+    available_stars.map { |star| "#{star[:name]}: #{star[:cost]}k." }.join("\n") unless available_stars.empty?
+  end
+
   case table
   when "weather"
     case roll
@@ -106,9 +118,9 @@ def bot_answer_to(table, roll)
       "7: Brilliant Coaching\nBoth coaches roll a D6 and add the number of assistant coaches on their Team Draft list. The coach with the highest total gains one extra team re-roll for the drive ahead. If this team re-roll is not used before the end of this drive, it is lost. In the case of a tie, neither coach gains an extra re-roll."
     when 8
       "8: Changing Weather\nMake a new roll on the Weather table and apply the result. If the weather conditions are \'Perfect Conditions\' as a result of this roll, the ball will scatter, as described on page 25, before landing."
-     when 9
+      when 9
       "9: Quick Snap\nD3+3 Open players on the receiving team may immediately move one square in any direction."
-     when 10
+      when 10
       "10: Blitz\nD3+3 Open players on the kicking team may immediately activate to perform a Move action. One may perform a Blitz action and one may perform a Throw Team-mate action. If a player Falls over or is Knocked Down, no further players can be activated and the Blitz ends immediately."
     when 11
       "11: Officious Ref\nBoth coaches roll a D6 and add their Fan Factor to the result. The coach that rolls the lowest randomly selects one of their players from among those on the pitch, in the case of a tie, both coaches randomly select a player. Roll a D6 for the selected player(s), On a roll of 2+, the player and the referee argue and come to blows, The player is Placed Prone and becomes Stunned. On a roll of 1 however, the player is immediately Sent-Off."
@@ -180,158 +192,41 @@ def bot_answer_to(table, roll)
     else
       "2-7: Stunned\nPlace the player face down in the sqaure they are occupying. They may not be activated.\nAt the end of each turn, all players on the active team who began the turn stunned become prone.\n\nStunty players are not stunned on a 7, but are instead knocked out (result 8-9).\nPlayers with both Stunty and Thick Skull are stunned on a 7 as normal.\n\n8-9: Knocked out\nRemove the player from the pitch and place them in the KO'd box of their coach's dugout. At the end of each drive, roll a d6 for each KO'd player:\n\nD6 TABLE\n1-3: The player is yet unable to take to the field.\n4-6: The player has recovered and returns to the reserves box. They may be set up for the next drive.\n\nStunty players are KO'd on a result of 7-8, and on a 9 are instead Badly Hurt (as though they had rolled 1-6 on the Casualty table).\nPlayers with Thick Skull are stunned on an 8 and only KO'd on a 9.\nPlayers with both Stunty and Thick Skull are stunned on a 7, KO'd on an 8, and Badly Hurt on a 9.\n\n10-12: Casualty!\nRemove the player from the pitch and place them in the Casualty box of their coach's dugout. Roll on the casualty table to determine the nature of the injury."
     end
-  when "amazon"
-    case roll
-    stars.each do |star|
-      if star[:cost] <= roll && star[:rules].include?("Lustrian Superleague", "Any")
-        "#{star[:name]}: #{star[:cost]}k."
-  when "blackorc"
-    case roll
-    stars.each do |star|
-      if star[:cost] <= roll && star[:rules].include?("Badlands Brawl", "Any")
-        "#{star[:name]}: #{star[:cost]}k."
-  when "chaos" ,  "chosen" ,  "chaoschosen" ,  "renegade" ,  "chaosrenegade"
-    case roll
-    stars.each do |star|
-      if star[:cost] <= roll && star[:rules].include?("Favoured of...", "Favoured of Nurgle", "Favoured of Tzeentch", "Favoured of Slaanesh", "Favoured of Khorne", "Favoured of Undivided", "Any")
-        "#{star[:name]}: #{star[:cost]}k. #{star[:rules]}"
-  when "darkelf"
-    case roll
-      stars.each do |star|
-        if star[:cost] <= roll && star[:rules].include?("Elven Kingdoms League", "Any")
-          "#{star[:name]}: #{star[:cost]}k."
+  when "amazon", "lizardmen", "slann", "kislev", "kislevcircus"
+    find_available_stars(stars, roll, "Lustrian Superleague", "Any")
+  when "blackorc", "goblin", "orc"
+    find_available_stars(stars, roll, "Badlands Brawl", "Any")
+  when "chaos", "chosen", "chaoschosen", "renegade", "chaosrenegade"
+    find_available_stars(stars, roll, "Favoured of...", "Favoured of Nurgle", "Favoured of Tzeentch", "Favoured of Slaanesh", "Favoured of Khorne", "Favoured of Undivided", "Any")
+  when "darkelf", "elvenunion", "elf", "proelf", "highelf", "woodelf"
+    find_available_stars(stars, roll, "Elven Kingdoms League", "Any")
   when "dwarf"
-  case roll
-    stars.each do |star|
-      if star[:cost] <= roll && star[:rules].include?("Worlds Edge Superleague", "Any")
-        "#{star[:name]}: #{star[:cost]}k."
-  when "elvenunion" ,  "elf" ,  "proelf"
-    case roll
-      stars.each do |star|
-        if star[:cost] <= roll && star[:rules].include?("Elven Kingdoms League", "Any")
-          "#{star[:name]}: #{star[:cost]}k."
+    find_available_stars(stars, roll, "Worlds Edge Superleague", "Any")
   when "gnome"
-    case roll
-      stars.each do |star|
-        if star[:cost] <= roll && star[:rules].include?("Halfling Thimble Cup", "Any")
-          "#{star[:name]}: #{star[:cost]}k."
-  when "goblin"
-    case roll
-      stars.each do |star|
-        if star[:cost] <= roll && star[:rules].include?("Badlands Brawl", "Underworld Challenge", "Any")
-          "#{star[:name]}: #{star[:cost]}k."
-  when "halfling"
-    case roll
-      stars.each do |star|
-        if star[:cost] <= roll && star[:rules].include?("Halfling Thimble Cup", "Old World Classic", "Any")
-          "#{star[:name]}: #{star[:cost]}k."
-  when "highelf"
-    case roll
-      stars.each do |star|
-        if star[:cost] <= roll && star[:rules].include?("Elven Kindoms League", "Any")
-          "#{star[:name]}: #{star[:cost]}k."
-  when "human"
-    case roll
-      stars.each do |star|
-        if star[:cost] <= roll && star[:rules].include?("Halfling Thimble Cup", "Old World Classic", "Any")
-          "#{star[:name]}: #{star[:cost]}k."
-  when "nobility" ,  "imperial" ,  "imperialnobility"
-    case roll
-      stars.each do |star|
-        if star[:cost] <= roll && star[:rules].include?("Old World Classic", "Any")
-          "#{star[:name]}: #{star[:cost]}k."
+    find_available_stars(stars, roll, "Halfling Thimble Cup", "Any")
+  when "halfling", "human"
+    find_available_stars(stars, roll, "Halfling Thimble Cup", "Old World Classic", "Any")
+  when "nobility", "imperial", "imperialnobility", "ogre", "oldworldalliance", "oldworld", "owa"
+    find_available_stars(stars, roll, "Old World Classic", "Any")
   when "khorne"
-    case roll
-      stars.each do |star|
-        if star[:cost] <= roll && star[:rules].include?("Favoured of Khorne", "Any")
-          "#{star[:name]}: #{star[:cost]}k."
-  when "Lizardmen"
-    case roll
-      stars.each do |star|
-        if star[:cost] <= roll && star[:rules].include?("Lustrian Superleague", "Any")
-          "#{star[:name]}: #{star[:cost]}k."
-  when "necromantic" ,  "necro" ,  "necromantichorror"
-    case roll
-      stars.each do |star|
-        if star[:cost] <= roll && star[:rules].include?("Sylvanian Spotlight", "Any") && !star[:name].include?("Morg \'n\' Thorg")
-          "#{star[:name]}: #{star[:cost]}k."
+    find_available_stars(stars, roll, "Favoured of Khorne", "Any")
+  when "necromantic", "necro", "necromantichorror", "shamblingundead", "undead", "vampire", "khemri", "tombkings"
+    find_available_stars(stars, roll, "Sylvanian Spotlight", "Any") { |star| !star[:name].include?("Morg 'n' Thorg") }
   when "norse"
-    case roll
-      stars.each do |star|
-        if star[:cost] <= roll && star[:rules].include?("Favoured of Undivided", "Favoured of Khorne", "Old World Classic", "Any")
-          "#{star[:name]}: #{star[:cost]}k. #{star[:rules]}"
+    find_available_stars(stars, roll, "Favoured of Undivided", "Favoured of Khorne", "Old World Classic", "Any")
   when "nurgle"
-    case roll
-      stars.each do |star|
-        if star[:cost] <= roll && star[:rules].include?("Favoured of Nurgle", "Any")
-          "#{star[:name]}: #{star[:cost]}k."
-  when "ogre"
-    case roll
-      stars.each do |star|
-        if star[:cost] <= roll && star[:rules].include?("Old World Classic", "Badlands Brawl", "Any")
-          "#{star[:name]}: #{star[:cost]}k."
-  when "oldworldalliance" ,  "oldworld" ,  "owa"
-    case roll
-      stars.each do |star|
-        if star[:cost] <= roll && star[:rules].include?("Old World Classic", "Any")
-          "#{star[:name]}: #{star[:cost]}k."
-  when "orc"
-    case roll
-      stars.each do |star|
-        if star[:cost] <= roll && star[:rules].include?("Badlands Brawl", "Any")
-          "#{star[:name]}: #{star[:cost]}k."
-  when "shamblingundead" ,  "undead"
-    case roll
-      stars.each do |star|
-        if star[:cost] <= roll && star[:rules].include?("Sylvanian Spotlight", "Any") && !star[:name].include?("Morg \'n\' Thorg")
-          "#{star[:name]}: #{star[:cost]}k."
-  when "skaven"
-    case roll
-      stars.each do |star|
-        if star[:cost] <= roll && star[:rules].include?("Underworld Challenge", "Any")
-          "#{star[:name]}: #{star[:cost]}k."
-  when "slann" ,  "kislev" ,  "kislevcircus"
-    case roll
-      stars.each do |star|
-        if star[:cost] <= roll && star[:rules].include?("Lustria Superleague", "Any")
-          "#{star[:name]}: #{star[:cost]}k."
-  when "snotling"
-    case roll
-      stars.each do |star|
-        if star[:cost] <= roll && star[:rules].include?("Underworld Challenge", "Any")
-          "#{star[:name]}: #{star[:cost]}k."
-  when "khemri" ,  "tombkings"
-    case roll
-      stars.each do |star|
-        if star[:cost] <= roll && star[:rules].include?("Sylvanian Spotlight", "Any") && !star[:name].include?("Morg \'n\' Thorg")
-          "#{star[:name]}: #{star[:cost]}k."
-  when "underworld", "underworlddenizens", "ud"
-    case roll
-      stars.each do |star|
-        if star[:cost] <= roll && star[:rules].include?("Underworld Challenge", "Any")
-          "#{star[:name]}: #{star[:cost]}k."
-  when "vampire"
-    case roll
-      stars.each do |star|
-        if star[:cost] <= roll && star[:rules].include?("Sylvanian Spotlight", "Any") && !star[:name].include?("Morg \'n\' Thorg")
-          "#{star[:name]}: #{star[:cost]}k."
-  when "woodelf"
-    case roll
-      stars.each do |star|
-        if star[:cost] <= roll && star[:rules].include?("Elven Kingdoms League", "Any")
-          "#{star[:name]}: #{star[:cost]}k."
+    find_available_stars(stars, roll, "Favoured of Nurgle", "Any")
+  when "snotling", "skaven", "underworld", "underworlddenizens", "ud"
+    find_available_stars(stars, roll, "Underworld Challenge", "Any")
   when "chaosdwarf", "chorf"
-    case roll
-      stars.each do |star|
-        if star[:cost] <= roll && star[:rules].include?("Favoured of Hashut", "Badlands Brawl" "Any")
-          "#{star[:name]}: #{star[:cost]}k."
-        else
+    find_available_stars(stars, roll, "Favoured of Hashut", "Badlands Brawl", "Any")
+  else
     "Send a request in the format '[table] [number]'. For example, send 'summer 6'. For star players, send '[team] [cash]'."
   end
 end
 
 stars = [
-  {name: Akhorne The Squirrel,
+  {name: "Akhorne The Squirrel",
   cost: 80,
   rules: ['Any']
   },
