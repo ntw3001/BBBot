@@ -23,7 +23,11 @@ def bot_answer_to(table, roll)
       star[:cost] <= roll && rules.any? { |rule| star[:rules].include?(rule) }
     end
 
-    available_stars.map { |star| "#{star[:name]}: #{star[:cost]}k." }.join("\n") unless available_stars.empty?
+    if available_stars.empty?
+      "No stars available."
+    else
+      available_stars.map { |star| "#{star[:name]}: #{star[:cost]}k." }.join("\n")
+    end
   end
 
   case table
