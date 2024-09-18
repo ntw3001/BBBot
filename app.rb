@@ -16,7 +16,7 @@ end
 def bot_answer_to(table, roll)
   return "Please provide a valid roll or petty cash value." if roll.nil? || roll.to_i.zero?
 
-  response = [...]
+  response = ["#{table} - #{roll}"]
 
   case table
   when "weather"
