@@ -19,7 +19,10 @@ def bot_answer_to(table, roll)
   return "Please provide a valid roll or petty cash value." if roll.nil? || roll.to_i.zero?
 
   def find_available_stars(stars, roll, *rules)
+    puts "Roll: #{roll}, Rules: #{rules.inspect}"
+
     available_stars = stars.select do |star|
+      puts "Checking star: #{star[:name]}, Cost: #{star[:cost]}, Rules: #{star[:rules].inspect}"
       star[:cost] <= roll && rules.any? { |rule| star[:rules].include?(rule) }
     end
 
@@ -29,6 +32,7 @@ def bot_answer_to(table, roll)
       available_stars.map { |star| "#{star[:name]}: #{star[:cost]}k." }.join("\n")
     end
   end
+
 
   case table
   when "weather"
