@@ -15,7 +15,6 @@ end
 
 def bot_answer_to(table, roll)
   p "Received table: #{table}, roll: #{roll}"
-
   return "Please provide a valid roll or petty cash value." if roll.nil? || roll.to_i.zero?
 
   response = []
@@ -69,7 +68,7 @@ def bot_answer_to(table, roll)
       "2: Sweltering Heat\nSome players faint in the unbearable heat! D3 randomly selected players from each team that are on the pitch when a drive ends are placed in the Reserves box. They must miss the next drive.\n\n3: Melting Astrogranite\nIt's not just the players that are affected by the hot weather - even the pitch is melting! It might be the heat, or it might be the sticky footing, but the players are certainly struggling to move! The number of squares a player can attempt to Rush is reduced by one (to a minimum of one).\n\n4-10: Perfect Conditions\nIt's still hot, but not as hot as it has been lately! A (tolerably) warm, dry and slightly overcast day provides perfect conditions for Blood Bowl.\n\n11: Blinding Rays\nNo cloud cover in the clear, blue skies and the relentless glare of the sun leaves the players squinting and shading their eyes. Apply a -1 modifier every time a player tests against their Passing Ability. Additionally, only Quick and Short pass actions can be performed.\n\n12: Monsoon\nA sudden burst of torrential rain and high winds hits the pitch, making the ball slippery and erratic. Apply a -1 modifier every time a player makes an Agility test to catch or pick up the ball, or to attempt to interfere with a pass. Additionally, when the ball scatters, it moves from the square in which it was placed four times before landing, rather than the usual three."
     end
     response << summer_response
-  when "autumn" ,  "fall"
+  when "autumn" , "fall"
     autumn_response = case roll
     when 2
       "2: Leaf-strewn Pitch\nHuge drifts of leaves have piled up at regular intervals across the pitch. It looks terrible, but they're soft to land on! When a player Falls Over or is Knocked Down, the coach of the opposing team must apply a -1 modifier when making an Armour roll against them."
