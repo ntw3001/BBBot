@@ -60,7 +60,7 @@ def bot_answer_to(table, roll)
     else
       "2: Sweltering Heat\nSome players faint in the unbearable heat! D3 randomly selected players from each team that are on the pitch when a drive ends are placed in the Reserves box. They must miss the next drive.\n\n3: Melting Astrogranite\nIt's not just the players that are affected by the hot weather - even the pitch is melting! It might be the heat, or it might be the sticky footing, but the players are certainly struggling to move! The number of squares a player can attempt to Rush is reduced by one (to a minimum of one).\n\n4-10: Perfect Conditions\nIt's still hot, but not as hot as it has been lately! A (tolerably) warm, dry and slightly overcast day provides perfect conditions for Blood Bowl.\n\n11: Blinding Rays\nNo cloud cover in the clear, blue skies and the relentless glare of the sun leaves the players squinting and shading their eyes. Apply a -1 modifier every time a player tests against their Passing Ability. Additionally, only Quick and Short pass actions can be performed.\n\n12: Monsoon\nA sudden burst of torrential rain and high winds hits the pitch, making the ball slippery and erratic. Apply a -1 modifier every time a player makes an Agility test to catch or pick up the ball, or to attempt to interfere with a pass. Additionally, when the ball scatters, it moves from the square in which it was placed four times before landing, rather than the usual three."
     end
-  when "autumn"
+  when "autumn" ,  "fall"
     case roll
     when 2
       "2: Leaf-strewn Pitch\nHuge drifts of leaves have piled up at regular intervals across the pitch. It looks terrible, but they're soft to land on! When a player Falls Over or is Knocked Down, the coach of the opposing team must apply a -1 modifier when making an Armour roll against them."
@@ -172,7 +172,7 @@ def bot_answer_to(table, roll)
   when "injury"
     case roll
     when 2..7
-      "2-7: Stunned\nPlace the player face down in the sqaure they are occupying. They may not be activated.\nAt the end of each turn, all players on the active team who began the turn stunned become prone.\n\nStunty players are not stunned on a 7, but are instead knocked out (result 8-9).\nPlayers with both Stunty and Thick Skull are stunned on a 7 as normal."
+      "2-7: Stunned\nPlace the player face down in the square they are occupying. They may not be activated.\nAt the end of each turn, all players on the active team who began the turn stunned become prone.\n\nStunty players are not stunned on a 7, but are instead knocked out (result 8-9).\nPlayers with both Stunty and Thick Skull are stunned on a 7 as normal."
     when 8..9
       "8-9: Knocked out\nRemove the player from the pitch and place them in the KO'd box of their coach's dugout. At the end of each drive, roll a d6 for each KO'd player:\n\nD6 TABLE\n1-3: The player is yet unable to take to the field.\n4-6: The player has recovered and returns to the reserves box. They may be set up for the next drive.\n\nStunty players are KO'd on a result of 7-8, and on a 9 are instead Badly Hurt (as though they had rolled 1-6 on the Casualty table).\nPlayers with Thick Skull are stunned on an 8 and only KO'd on a 9.\nPlayers with both Stunty and Thick Skull are stunned on a 7, KO'd on an 8, and Badly Hurt on a 9."
     when 10..12
@@ -180,10 +180,386 @@ def bot_answer_to(table, roll)
     else
       "2-7: Stunned\nPlace the player face down in the sqaure they are occupying. They may not be activated.\nAt the end of each turn, all players on the active team who began the turn stunned become prone.\n\nStunty players are not stunned on a 7, but are instead knocked out (result 8-9).\nPlayers with both Stunty and Thick Skull are stunned on a 7 as normal.\n\n8-9: Knocked out\nRemove the player from the pitch and place them in the KO'd box of their coach's dugout. At the end of each drive, roll a d6 for each KO'd player:\n\nD6 TABLE\n1-3: The player is yet unable to take to the field.\n4-6: The player has recovered and returns to the reserves box. They may be set up for the next drive.\n\nStunty players are KO'd on a result of 7-8, and on a 9 are instead Badly Hurt (as though they had rolled 1-6 on the Casualty table).\nPlayers with Thick Skull are stunned on an 8 and only KO'd on a 9.\nPlayers with both Stunty and Thick Skull are stunned on a 7, KO'd on an 8, and Badly Hurt on a 9.\n\n10-12: Casualty!\nRemove the player from the pitch and place them in the Casualty box of their coach's dugout. Roll on the casualty table to determine the nature of the injury."
     end
-  else
-    "Send a request in the format '[table] [number]'. For example, send 'summer 6'. For the full summer table, send 'summer'. The available tables are:\n\nweather\nspring\nsummer\nautumn\nwintern\kickoff\nprayers\ninjury\ncasualty"
+  when "amazon"
+    case roll
+    stars.each do |star|
+      if star[:cost] <= roll && star[:rules].include?("Lustrian Superleague", "Any")
+        "#{star[:name]}: #{star[:cost]}k."
+  when "blackorc"
+    case roll
+    stars.each do |star|
+      if star[:cost] <= roll && star[:rules].include?("Badlands Brawl", "Any")
+        "#{star[:name]}: #{star[:cost]}k."
+  when "chaos" ,  "chosen" ,  "chaoschosen" ,  "renegade" ,  "chaosrenegade"
+    case roll
+    stars.each do |star|
+      if star[:cost] <= roll && star[:rules].include?("Favoured of...", "Favoured of Nurgle", "Favoured of Tzeentch", "Favoured of Slaanesh", "Favoured of Khorne", "Favoured of Undivided", "Any")
+        "#{star[:name]}: #{star[:cost]}k. #{star[:rules]}"
+  when "darkelf"
+    case roll
+      stars.each do |star|
+        if star[:cost] <= roll && star[:rules].include?("Elven Kingdoms League", "Any")
+          "#{star[:name]}: #{star[:cost]}k."
+  when "dwarf"
+  case roll
+    stars.each do |star|
+      if star[:cost] <= roll && star[:rules].include?("Worlds Edge Superleague", "Any")
+        "#{star[:name]}: #{star[:cost]}k."
+  when "elvenunion" ,  "elf" ,  "proelf"
+    case roll
+      stars.each do |star|
+        if star[:cost] <= roll && star[:rules].include?("Elven Kingdoms League", "Any")
+          "#{star[:name]}: #{star[:cost]}k."
+  when "gnome"
+    case roll
+      stars.each do |star|
+        if star[:cost] <= roll && star[:rules].include?("Halfling Thimble Cup", "Any")
+          "#{star[:name]}: #{star[:cost]}k."
+  when "goblin"
+    case roll
+      stars.each do |star|
+        if star[:cost] <= roll && star[:rules].include?("Badlands Brawl", "Underworld Challenge", "Any")
+          "#{star[:name]}: #{star[:cost]}k."
+  when "halfling"
+    case roll
+      stars.each do |star|
+        if star[:cost] <= roll && star[:rules].include?("Halfling Thimble Cup", "Old World Classic", "Any")
+          "#{star[:name]}: #{star[:cost]}k."
+  when "highelf"
+    case roll
+      stars.each do |star|
+        if star[:cost] <= roll && star[:rules].include?("Elven Kindoms League", "Any")
+          "#{star[:name]}: #{star[:cost]}k."
+  when "human"
+    case roll
+      stars.each do |star|
+        if star[:cost] <= roll && star[:rules].include?("Halfling Thimble Cup", "Old World Classic", "Any")
+          "#{star[:name]}: #{star[:cost]}k."
+  when "nobility" ,  "imperial" ,  "imperialnobility"
+    case roll
+      stars.each do |star|
+        if star[:cost] <= roll && star[:rules].include?("Old World Classic", "Any")
+          "#{star[:name]}: #{star[:cost]}k."
+  when "khorne"
+    case roll
+      stars.each do |star|
+        if star[:cost] <= roll && star[:rules].include?("Favoured of Khorne", "Any")
+          "#{star[:name]}: #{star[:cost]}k."
+  when "Lizardmen"
+    case roll
+      stars.each do |star|
+        if star[:cost] <= roll && star[:rules].include?("Lustrian Superleague", "Any")
+          "#{star[:name]}: #{star[:cost]}k."
+  when "necromantic" ,  "necro" ,  "necromantichorror"
+    case roll
+      stars.each do |star|
+        if star[:cost] <= roll && star[:rules].include?("Sylvanian Spotlight", "Any") && !star[:name].include?("Morg \'n\' Thorg")
+          "#{star[:name]}: #{star[:cost]}k."
+  when "norse"
+    case roll
+      stars.each do |star|
+        if star[:cost] <= roll && star[:rules].include?("Favoured of Undivided", "Favoured of Khorne", "Old World Classic", "Any")
+          "#{star[:name]}: #{star[:cost]}k. #{star[:rules]}"
+  when "nurgle"
+    case roll
+      stars.each do |star|
+        if star[:cost] <= roll && star[:rules].include?("Favoured of Nurgle", "Any")
+          "#{star[:name]}: #{star[:cost]}k."
+  when "ogre"
+    case roll
+      stars.each do |star|
+        if star[:cost] <= roll && star[:rules].include?("Old World Classic", "Badlands Brawl", "Any")
+          "#{star[:name]}: #{star[:cost]}k."
+  when "oldworldalliance" ,  "oldworld" ,  "owa"
+    case roll
+      stars.each do |star|
+        if star[:cost] <= roll && star[:rules].include?("Old World Classic", "Any")
+          "#{star[:name]}: #{star[:cost]}k."
+  when "orc"
+    case roll
+      stars.each do |star|
+        if star[:cost] <= roll && star[:rules].include?("Badlands Brawl", "Any")
+          "#{star[:name]}: #{star[:cost]}k."
+  when "shamblingundead" ,  "undead"
+    case roll
+      stars.each do |star|
+        if star[:cost] <= roll && star[:rules].include?("Sylvanian Spotlight", "Any") && !star[:name].include?("Morg \'n\' Thorg")
+          "#{star[:name]}: #{star[:cost]}k."
+  when "skaven"
+    case roll
+      stars.each do |star|
+        if star[:cost] <= roll && star[:rules].include?("Underworld Challenge", "Any")
+          "#{star[:name]}: #{star[:cost]}k."
+  when "slann" ,  "kislev" ,  "kislevcircus"
+    case roll
+      stars.each do |star|
+        if star[:cost] <= roll && star[:rules].include?("Lustria Superleague", "Any")
+          "#{star[:name]}: #{star[:cost]}k."
+  when "snotling"
+    case roll
+      stars.each do |star|
+        if star[:cost] <= roll && star[:rules].include?("Underworld Challenge", "Any")
+          "#{star[:name]}: #{star[:cost]}k."
+  when "khemri" ,  "tombkings"
+    case roll
+      stars.each do |star|
+        if star[:cost] <= roll && star[:rules].include?("Sylvanian Spotlight", "Any") && !star[:name].include?("Morg \'n\' Thorg")
+          "#{star[:name]}: #{star[:cost]}k."
+  when "underworld", "underworlddenizens", "ud"
+    case roll
+      stars.each do |star|
+        if star[:cost] <= roll && star[:rules].include?("Underworld Challenge", "Any")
+          "#{star[:name]}: #{star[:cost]}k."
+  when "vampire"
+    case roll
+      stars.each do |star|
+        if star[:cost] <= roll && star[:rules].include?("Sylvanian Spotlight", "Any") && !star[:name].include?("Morg \'n\' Thorg")
+          "#{star[:name]}: #{star[:cost]}k."
+  when "woodelf"
+    case roll
+      stars.each do |star|
+        if star[:cost] <= roll && star[:rules].include?("Elven Kingdoms League", "Any")
+          "#{star[:name]}: #{star[:cost]}k."
+  when "chaosdwarf", "chorf"
+    case roll
+      stars.each do |star|
+        if star[:cost] <= roll && star[:rules].include?("Favoured of Hashut", "Badlands Brawl" "Any")
+          "#{star[:name]}: #{star[:cost]}k."
+        else
+    "Send a request in the format '[table] [number]'. For example, send 'summer 6'. For star players, send '[team] [cash]'."
   end
 end
+
+stars = [
+  {name: Akhorne The Squirrel,
+  cost: 80,
+  rules: ['Any']
+  },
+  {name: "Barik Farblast",
+  cost: 80,
+  rules: ['	Halfling Thimble Cup', 'Old World Classic', 'Worlds Edge Superleague']
+  },
+  {name: "Bilerot Vomitflesh",
+  cost: 180,
+  rules: ['Favoured of Nurgle']
+  },
+  {name: "The Black Gobbo",
+  cost: 225,
+  rules: ['Badlands Brawl', 'Underworld Challenge']
+  },
+  {name: "Boa Kon\'ssstriktr",
+  cost: 200,
+  rules: ['Lustrian Superleague']
+  },
+  {name: "Bomber Dribblesnot",
+  cost: 50,
+  rules: ['Badlands Brawl', 'Underworld Challenge']
+  },
+  {name: "Bryce \'The Slice\' Cambuel",
+  cost: 130,
+  rules: ['Sylvanian Spotlight']
+  },
+  {name: "\'Captain\' Karina Von Riesz",
+  cost: 230,
+  rules: ['Sylvanian Spotlight']
+  },
+  {name: "Count Luthor von Drakenborg",
+  cost: 340,
+  rules: ['Sylvanian Spotlight']
+  },
+  {name: "Cindy Piewhistle",
+  cost: 50,
+  rules: ['Halfling Thimble Cup', 'Old World Classic']
+  },
+  {name: "Deeproot Strongbranch",
+  cost: 280,
+  rules: ['Halfling Thimble Cup', 'Old World Classic']
+  },
+  {name: "Dribl and Drull",
+  cost: 190,
+  rules: ['Lustrian Superleague']
+  },
+  {name: "Eldril Sidewinder",
+  cost: 230,
+  rules: ['Elven Kingdoms League']
+  },
+  {name: "Estelle La Veneaux",
+  cost: 190,
+  rules: ['Lustrian Superleague']
+  },
+  {name: "Frank \'n\' Stein",
+  cost: 250,
+  rules: ['Old World Classic', 'Sylvanian Spotlight']
+  },
+  {name: "Fungus the Loon",
+  cost: 80,
+  rules: ['Badlands Brawl', 'Underworld Challenge']
+  },
+  {name: "Glart Smashrip",
+  cost: 195,
+  rules: ['Favoured of Khorne', 'Favoured of Nurgle', 'Favoured of Tzeentch', 'Favoured of Slaanesh', 'Favoured of Hashut', 'Favoured of Undivided', 'Underworld Challenge']
+  },
+  {name: "Gloriel Summerbloom",
+  cost: 150,
+  rules: ['Elven Kingdoms League']
+  },
+  {name: "Glotl Stop",
+  cost: 270,
+  rules: ['Lustrian Superleague']
+  },
+  {name: "Grak and Crumbleberry",
+  cost: 250,
+  rules: ['Any']
+  },
+  {name: "Grashnak Blackhoof",
+  cost: 250,
+  rules: ['Favoured of Khorne', 'Favoured of Nurgle', 'Favoured of Tzeentch', 'Favoured of Slaanesh', 'Favoured of Hashut', 'Favoured of Undivided']
+  },
+  {name: "Gretchen Wachter \'The Blood Bowl Widow\'",
+  cost:260,
+  rules: ['Sylvanian Spotlight']
+  },
+  {name: "Griff Oberwald",
+  cost: 280,
+  rules: ['Old World Classic', 'Halfling Thimble Cup']
+  },
+  {name: "Grim Ironjaw",
+  cost: 200,
+  rules: ['Halfling Thimble Cup', 'Old World Classic', 'Worlds Edge Superleague']
+  },
+  {name: "Hakflem Skuttlespike",
+  cost: 210,
+  rules: ['Favoured of Khorne', 'Favoured of Nurgle', 'Favoured of Tzeentch', 'Favoured of Slaanesh', 'Favoured of Hashut', 'Favoured of Undivided', 'Underworld Challenge']
+  },
+  {name: "Helmut Wulf",
+  cost: 140,
+  rules: ['Any']
+  },
+  {name: "Ivan \'the Animal\' Deathshroud",
+  cost: 190,
+  rules: ['Sylvanian Spotlight']
+  },
+  {name: "Ivar Eriksson",
+  cost: 245,
+  rules: ['Old World Classic']
+  },
+  {name: "Karla Von Kill",
+  cost: 210,
+  rules: ['Halfling Thimble Cup', 'Old World Classic', 'Lustrian Superleague']
+  },
+  {name: "Kiroth Krakeneye",
+  cost: 160,
+  rules: ['Elven Kingdoms League']
+  },
+  {name: "Kreek Rustgouger",
+  cost: 170,
+  rules: ['Favoured of Khorne', 'Favoured of Nurgle', 'Favoured of Tzeentch', 'Favoured of Slaanesh', 'Favoured of Hashut', 'Favoured of Undivided', 'Underworld Challenge']
+  },
+  {name: "Lord Borak The Despoiler",
+  cost: 260,
+  rules: ['Favoured of Khorne', 'Favoured of Nurgle', 'Favoured of Tzeentch', 'Favoured of Slaanesh', 'Favoured of Hashut', 'Favoured of Undivided']
+  },
+  {name: "Max Spleenripper - Khorne",
+  cost: 130,
+  rules: ['Favoured Of Khorne']
+  },
+  {name: "Mighty Zug",
+  cost: 220,
+  rules: ['Halfling Thimble Cup', 'Old World Classic', 'Lustrian Superleague']
+  },
+  {name: "Morg \'n\' Thorg",
+  cost: 380,
+  rules: ['Any']
+  },
+  {name: "Nobbla Blackwart",
+  cost: 120,
+  rules: ['Badlands Brawl', 'Underworld Challenge']
+  },
+  {name: "Puggy Baconbreath",
+  cost: 120,
+  rules: ['Halfing Thimble Cup', 'Old World Classic']
+  },
+  {name: "Ripper Bolgrot",
+  cost: 250,
+  rules: ['Badlands Brawl', 'Underworld Challenge']
+  },
+  {name: "Rodney Roachbait",
+  cost: 70,
+  rules: ['Halfling Thimble Cup']
+  },
+  {name: "Rowana Foresetfoot",
+  cost: 160,
+  rules: ['Halfling Thimble Cup']
+  },
+  {name: "Roxanna Darknail",
+  cost: 270,
+  rules: ['Elven Kingdoms League']
+  },
+  {name: "Rumbelow Sheepskin",
+  cost: 170,
+  rules: ['Halfling Thimble Cup', 'Old World Classic', 'Worlds Edge Superleague']
+  },
+  {name: "Scrappa Sorehead",
+  cost: 130,
+  rules: ['Badlands Brawl', 'Underworld Challenge']
+  },
+  {name: "Scyla Anfingrimm - Khorne",
+  cost: 200,
+  rules: ['Favoured Of Khorne']
+  },
+  {name: "Skitter Stab-Stab",
+  cost: 250,
+  rules: ['Old World Classic']
+  },
+  {name: "Skrull Halfheight",
+  cost: 150,
+  rules: ['Sylvanian Spotlight', 'Worlds Edge Superleague']
+  },
+  {name: "Lucian and Valen Swift",
+  cost: 340,
+  rules: ['Elven Kingdoms League']
+  },
+  {name: "Thorsson Stoutmead",
+  cost: 170,
+  rules: ['Old World Classic']
+  },
+  {name: "Varag Ghoul-Chewer",
+  cost: 280,
+  rules: ['Badlands Brawl', 'Underworld Challenge']
+  },
+  {name: "Grombrindal, the White Dwarf",
+  cost: 210,
+  rules: ['Halfing Thimble Cup', 'Old World Classic', 'Worlds Edge Superleague', "Lustrian Superleague"]
+  },
+  {name: "Wilhelm Chaney",
+  cost: 220,
+  rules: ['Sylvanian Spotlight']
+  },
+  {name: "Willow Rosebark",
+  cost: 150,
+  rules: ['Elven Kingdoms League']
+  },
+  {name: "Withergrasp Doubledrool",
+  cost: 170,
+  rules: ['Favoured of Khorne', 'Favoured of Nurgle', 'Favoured of Tzeentch', 'Favoured of Slaanesh', 'Favoured of Hashut', 'Favoured of Undivided']
+  },
+  {name: "Zolcath the Zoat",
+  cost: 230,
+  rules: ['Lustrian Superleague', 'Elven Kingdoms League']
+  },
+  {name: "Zzharg Madeye",
+  cost: 0,
+  rules: ['Favoured of Hashut', 'Badlands Brawl']
+  }.
+  {name: "Hthark the Unstoppable",
+  cost: 300,
+  rules: ['Favoured of Hashut', 'Badlands Brawl']
+  }.
+  {name: "Rashnak Backstabber",
+  cost: 130,
+  rules: ['Badlands Brawl']
+  }.
+]
 
 def send_bot_message(message, client, event)
   # Log prints for debugging
