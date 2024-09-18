@@ -445,15 +445,15 @@ stars = [
   {name: "Zzharg Madeye",
   cost: 0,
   rules: ['Favoured of Hashut', 'Badlands Brawl']
-  }.
+  },
   {name: "Hthark the Unstoppable",
   cost: 300,
   rules: ['Favoured of Hashut', 'Badlands Brawl']
-  }.
+  },
   {name: "Rashnak Backstabber",
   cost: 130,
   rules: ['Badlands Brawl']
-  }.
+  },
 ]
 
 def send_bot_message(message, client, event)
