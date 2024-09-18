@@ -14,7 +14,7 @@ def client
 end
 
 def bot_answer_to(table, roll)
-  puts "Received table: #{table}, roll: #{roll}"
+  STDERR.puts "Received table: #{table}, roll: #{roll}"
   return "Please provide a valid roll or petty cash value." if roll.nil? || roll.to_i.zero?
 
   response = []
