@@ -283,8 +283,8 @@ def bot_answer_to(table, roll)
       response << available_stars
     end
   when "chaosdwarf", "chorf"
-    response << "Processing chorf request."
-    available_stars = find_available_stars(stars, roll, "Favoured of Hashut", "Badlands Brawl", "Any")
+    cash = case roll
+    available_stars = find_available_stars(stars, cash, "Favoured of Hashut", "Badlands Brawl", "Any")
 
     if available_stars.empty?
       response << "No available stars for #{table}."
@@ -529,7 +529,6 @@ stars = [
 ]
 
 def find_available_stars(stars, roll, *rules)
-  roll = roll.to_i
   available_stars = stars.select do |star|
     star[:cost] <= roll &&
     rules.any? { |rule| star[:rules].include?(rule) } &&
