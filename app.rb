@@ -289,7 +289,7 @@ def bot_answer_to(table, roll)
       response << available_stars
     end
   when "chaosdwarf", "chorf"
-    available_stars = find_available_stars(stars, roll, "Favoured of Hashut", "Badlands Brawl", "Any")
+    available_stars = find_available_stars(stars, roll)
 
     if available_stars.nil? || available_stars.empty?
       response << "No available stars for this selection."
@@ -540,7 +540,7 @@ def find_available_stars(stars, roll)
   available_stars = stars.select do |star|
     star[:cost] <= roll
   end
-  
+
   available_stars.empty? ? "No available stars for this selection." : available_stars.map { |star| star[:name] }.join(", ")
 end
 
