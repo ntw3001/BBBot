@@ -524,7 +524,7 @@ def bot_answer_to(table, roll)
     end
   when "chaosdwarf", "chorf", "chorfs"
     log("Processing chorfs")
-    available_stars = find_available_stars(stars, roll, "Favoured of Hashut", "Badlands Brawl", "Any")
+    available_stars = find_available_stars(stars, roll, "Favoured of Hashut", "Badlands Brawl", "Any", response)
 
     if available_stars.nil? || available_stars.empty?
       log("No available stars found.")
