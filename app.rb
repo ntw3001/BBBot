@@ -290,9 +290,10 @@ def bot_answer_to(table, roll)
     end
   when "chaosdwarf", "chorf"
     response << "Roll: #{roll}"
-    response << "Rules: #{rules.join(', ')}"
-    available_stars = find_available_stars(stars, roll, "Favoured of Hashut", "Badlands Brawl", "Any")
+    response << "Rules: #{["Favoured of Hashut", "Badlands Brawl", "Any"].join(', ')}"
+    available_stars = find_available_stars(stars, roll, "Favoured of Hashut", "Badlands Brawl", "Any", response)
     response << "Available Stars: #{available_stars}"
+
   else
     response << "Send a request in the format '[table] [number]'. For example, send 'summer 6'. For star players, send '[team] [cash]'."
   end
@@ -530,7 +531,8 @@ stars = [
   },
 ]
 
-def find_available_stars(stars, roll, *rules)
+def find_available_stars(stars, roll, *rules, response)
+  response << "find_available_stars called with roll: #{roll}, rules: #{rules.join(', ')}"
   roll = roll.to_i
   return "Invalid roll" if roll <= 0
 
@@ -538,8 +540,11 @@ def find_available_stars(stars, roll, *rules)
     star[:cost] <= roll && rules.any? { |rule| star[:rules].include?(rule) }
   end
 
+  response << "Available stars found: #{available_stars.inspect}"
+
   available_stars.empty? ? "No available stars for this selection." : available_stars.map { |star| "#{star[:name]}: #{star[:cost]}k" }.join(", ")
 end
+
 
 def send_bot_message(message, client, event)
   # Log prints for debugging
