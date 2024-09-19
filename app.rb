@@ -442,18 +442,12 @@ def bot_answer_to(table, roll)
     else
       response << "Available Stars: \n #{available_stars}"
     end
-    else
-      response << "Invalid input."
-    end
   when "blackorc", "goblin", "orc"
     available_stars = find_available_stars(stars, roll, "Badlands Brawl", "Any")
     if available_stars.nil? || available_stars.empty?
       response << "No available stars for this selection."
     else
       response << "Available Stars: \n #{available_stars}"
-    end
-    else
-      response << "Invalid input."
     end
   when "chaos", "chosen", "chaoschosen", "renegade", "chaosrenegade"
     available_stars = find_available_stars(stars, roll, "Favoured of...", "Favoured of Nurgle", "Favoured of Tzeentch", "Favoured of Slaanesh", "Favoured of Khorne", "Favoured of Undivided", "Any")
@@ -462,18 +456,12 @@ def bot_answer_to(table, roll)
     else
       response << "Available Stars: \n #{available_stars}"
     end
-    else
-      response << "Invalid input."
-    end
   when "darkelf", "elvenunion", "elf", "proelf", "highelf", "woodelf"
     available_stars = find_available_stars(stars, roll, "Elven Kingdoms League", "Any")
     if available_stars.nil? || available_stars.empty?
       response << "No available stars for this selection."
     else
       response << "Available Stars: \n #{available_stars}"
-    end
-    else
-      response << "Invalid input."
     end
   when "dwarf"
     available_stars = find_available_stars(stars, roll, "Worlds Edge Superleague", "Any")
@@ -482,9 +470,6 @@ def bot_answer_to(table, roll)
     else
       response << "Available Stars: \n #{available_stars}"
     end
-    else
-      response << "Invalid input."
-    end
   when "gnome"
       available_stars = find_available_stars(stars, roll, "Halfling Thimble Cup", "Any")
       if available_stars.nil? || available_stars.empty?
@@ -492,9 +477,6 @@ def bot_answer_to(table, roll)
       else
         response << "Available Stars: \n #{available_stars}"
       end
-    else
-      response << "Invalid input."
-    end
   when "halfling", "human"
       available_stars = find_available_stars(stars, roll, "Halfling Thimble Cup", "Old World Classic", "Any")
       if available_stars.nil? || available_stars.empty?
@@ -502,9 +484,6 @@ def bot_answer_to(table, roll)
       else
         response << "Available Stars: \n #{available_stars}"
       end
-    else
-      response << "Invalid input."
-    end
   when "nobility", "imperial", "imperialnobility", "ogre", "oldworldalliance", "oldworld", "owa"
       available_stars = find_available_stars(stars, roll, "Old World Classic", "Any")
       if available_stars.nil? || available_stars.empty?
@@ -512,9 +491,6 @@ def bot_answer_to(table, roll)
       else
         response << "Available Stars: \n #{available_stars}"
       end
-    else
-      response << "Invalid input."
-    end
   when "khorne"
       available_stars = find_available_stars(stars, roll, "Favoured of Khorne", "Any")
       if available_stars.nil? || available_stars.empty?
@@ -522,9 +498,6 @@ def bot_answer_to(table, roll)
       else
         response << "Available Stars: \n #{available_stars}"
       end
-    else
-      response << "Invalid input."
-    end
   when "necromantic", "necro", "necromantichorror", "shamblingundead", "undead", "vampire", "khemri", "tombkings"
       available_stars = find_available_stars(stars, roll, "Sylvanian Spotlight", "Any")
       if available_stars.nil? || available_stars.empty?
@@ -532,9 +505,6 @@ def bot_answer_to(table, roll)
       else
         response << "Available Stars: \n #{available_stars}"
       end
-    else
-      response << "Invalid input."
-    end
   when "norse"
     available_stars = find_available_stars(stars, roll, "Favoured of Undivided", "Favoured of Khorne", "Old World Classic", "Any")
       if available_stars.nil? || available_stars.empty?
@@ -542,9 +512,6 @@ def bot_answer_to(table, roll)
       else
         response << "Available Stars: \n #{available_stars}"
       end
-    else
-      response << "Invalid input."
-    end
   when "nurgle"
       available_stars = find_available_stars(stars, roll, "Favoured of Nurgle", "Any")
       if available_stars.nil? || available_stars.empty?
@@ -552,9 +519,6 @@ def bot_answer_to(table, roll)
       else
         response << "Available Stars: \n #{available_stars}"
       end
-    else
-      response << "Invalid input."
-    end
   when "snotling", "skaven", "underworld", "underworlddenizens", "ud"
       available_stars = find_available_stars(stars, roll, "Underworld Challenge", "Any")
       if available_stars.nil? || available_stars.empty?
@@ -562,9 +526,6 @@ def bot_answer_to(table, roll)
       else
         response << "Available Stars: \n #{available_stars}"
       end
-    else
-      response << "Invalid input."
-    end
   when "chaosdwarf", "chorf", "chorfs"
     available_stars = find_available_stars(stars, roll, "Favoured of Hashut", "Badlands Brawl", "Any", response)
     if available_stars.nil? || available_stars.empty?
@@ -572,9 +533,11 @@ def bot_answer_to(table, roll)
     else
       response << "Available Stars: \n #{available_stars}"
     end
+
   else
-    response << "Invalid input."
+      response << "Invalid input."
   end
+
   return response.join("\n")
 end
 
