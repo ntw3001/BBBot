@@ -283,6 +283,7 @@ def bot_answer_to(table, roll)
       response << available_stars
     end
   when "chaosdwarf", "chorf"
+    response << "Chorfs, eh?"
     available_stars =
     find_available_stars(stars, roll, "Favoured of Hashut", "Badlands Brawl", "Any")
 
