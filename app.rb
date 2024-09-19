@@ -18,6 +18,8 @@ def bot_answer_to(table, roll)
 
   response = []
 
+  response << "Checking input: #{input_value}"
+
   case table
   when "weather"
     weather_response = case roll
