@@ -283,11 +283,12 @@ def bot_answer_to(table, roll)
       response << available_stars
     end
   when "chaosdwarf", "chorf"
-    available_stars = find_available_stars(stars, cash, "Favoured of Hashut", "Badlands Brawl", "Any")
+    available_stars = "hhh"
+    # find_available_stars(stars, cash, "Favoured of Hashut", "Badlands Brawl", "Any")
 
-    if available_stars.nil? || available_stars.empty?
-      response << "No available stars for this selection."
-    else
+    # if available_stars.nil? || available_stars.empty?
+    #   response << "No available stars for this selection."
+    # else
       response << available_stars
     end
   else
