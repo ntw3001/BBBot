@@ -19,7 +19,7 @@ end
 def bot_answer_to(table, roll)
   log("Bot function started.")
   return "Please provide a valid roll or petty cash value." if roll.nil? || roll.to_i.zero?
-  
+
   stars = [
     {name: "Akhorne The Squirrel",
     cost: 80,
@@ -253,7 +253,7 @@ def bot_answer_to(table, roll)
 
   response = []
 
-  response << "Input: #{table} #{roll}"
+  # response << "Input: #{table} #{roll}"
   log("#{table} #{roll}")
 
   case table
@@ -545,7 +545,7 @@ end
 
 
 def find_available_stars(stars, roll, *rules, response)
-  response << "find_available_stars called with roll: #{roll}, rules: #{rules.join(', ')}"
+  # response << "find_available_stars called with roll: #{roll}, rules: #{rules.join(', ')}"
   roll = roll.to_i
   return "Invalid roll" if roll <= 0
 
@@ -553,7 +553,7 @@ def find_available_stars(stars, roll, *rules, response)
     star[:cost] <= roll && rules.any? { |rule| star[:rules].include?(rule) }
   end
 
-  response << "Available stars found: #{available_stars.inspect}"
+  # response << "Available stars found: #{available_stars.inspect}"
 
   available_stars.empty? ? "No available stars for this selection." : available_stars.map { |star| "#{star[:name]}: #{star[:cost]}k" }.join("\n")
 end
