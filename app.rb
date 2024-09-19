@@ -199,7 +199,7 @@ def bot_answer_to(table, roll)
     },
     {name: "Skitter Stab-Stab",
     cost: 250,
-    rules: ['Old World Classic']
+    rules: ['Favoured of Khorne', 'Favoured of Nurgle', 'Favoured of Tzeentch', 'Favoured of Slaanesh', 'Favoured of Hashut', 'Favoured of Undivided', 'Underworld Challenge']
     },
     {name: "Skrull Halfheight",
     cost: 150,
