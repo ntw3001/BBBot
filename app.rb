@@ -294,7 +294,6 @@ def bot_answer_to(table, roll)
     # response << available_stars
     # end
     response << "Test"
-  return response.join("\n")
   else
     response << "Send a request in the format '[table] [number]'. For example, send 'summer 6'. For star players, send '[team] [cash]'."
   end
