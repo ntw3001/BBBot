@@ -18,6 +18,8 @@ def bot_answer_to(table, roll)
 
   response = []
 
+  response << "Input value: #{input_value}"
+
   case table
   when "weather"
     weather_response = case roll
@@ -284,6 +286,7 @@ def bot_answer_to(table, roll)
     end
   when "chaosdwarf", "chorf"
     response << "Chorfs, eh?"
+    response << "Response so far: #{response.join("\n")}"
     available_stars =
     find_available_stars(stars, roll, "Favoured of Hashut", "Badlands Brawl", "Any")
 
