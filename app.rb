@@ -484,7 +484,7 @@ def bot_answer_to(table, roll)
       else
         response << "Available Stars: \n#{available_stars}"
       end
-  when "nobility", "imperial", "imperialnobility", "noble", "nobles", "ogre", "ogres", "oldworldalliance", "oldworld", "owa", "human", "humans"
+  when "nobility", "imperial", "imperialnobility", "noble", "nobles", "oldworldalliance", "oldworld", "owa", "human", "humans"
       available_stars = find_available_stars(stars, roll, "Old World Classic", "Any")
       if available_stars.nil? || available_stars.empty?
         response << "No available stars for this selection."
@@ -493,6 +493,13 @@ def bot_answer_to(table, roll)
       end
   when "khorne"
       available_stars = find_available_stars(stars, roll, "Favoured of Khorne", "Any")
+      if available_stars.nil? || available_stars.empty?
+        response << "No available stars for this selection."
+      else
+        response << "Available Stars: \n#{available_stars}"
+      end
+  when "ogre", "ogres"
+      available_stars = find_available_stars(stars, roll, "Badlands Brawl", "Old World Classic", "Any")
       if available_stars.nil? || available_stars.empty?
         response << "No available stars for this selection."
       else
@@ -543,7 +550,7 @@ end
 
 
 
-def find_available_stars(stars, roll, *rules, response)
+def find_available_stars(stars, roll, *rules)
   roll = roll.to_i
   return "Invalid roll" if roll <= 0
   available_stars = stars.select do |star|
