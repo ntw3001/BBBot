@@ -435,56 +435,56 @@ def bot_answer_to(table, roll)
     response << injury_response
 
 
-  when "amazon", "lizardmen", "slann", "kislev", "kislevcircus"
+  when "amazon", "amazons", "zons", "zon", "lizardmen", "lizardman", "lizards", "lizard", "slann", "kislev", "kislevcircus"
     available_stars = find_available_stars(stars, roll, "Lustrian Superleague", "Any")
     if available_stars.nil? || available_stars.empty?
       response << "No available stars for this selection."
     else
       response << "Available Stars: \n #{available_stars}"
     end
-  when "blackorc", "goblin", "orc"
+  when "blackorc", "blackorcs", "blorcs", "goblin", "goblins", "orc", "orcs"
     available_stars = find_available_stars(stars, roll, "Badlands Brawl", "Any")
     if available_stars.nil? || available_stars.empty?
       response << "No available stars for this selection."
     else
       response << "Available Stars: \n #{available_stars}"
     end
-  when "chaos", "chosen", "chaoschosen", "renegade", "chaosrenegade"
+  when "chaos", "chosen", "chaoschosen", "renegade", "renegades",, "chaosrenegades", "chaosrenegade"
     available_stars = find_available_stars(stars, roll, "Favoured of...", "Favoured of Nurgle", "Favoured of Tzeentch", "Favoured of Slaanesh", "Favoured of Khorne", "Favoured of Undivided", "Any")
     if available_stars.nil? || available_stars.empty?
       response << "No available stars for this selection."
     else
       response << "Available Stars: \n #{available_stars}"
     end
-  when "darkelf", "elvenunion", "elf", "proelf", "highelf", "woodelf"
+  when "darkelf", "darkelves", "delf", "delves", "elvenunion", "elf", "elves", "pelves", "pelf" "proelf", "proelves" "highelf", "highelves", "helf", "helves", "woodelf", "woodelves", "welf", "welves"
     available_stars = find_available_stars(stars, roll, "Elven Kingdoms League", "Any")
     if available_stars.nil? || available_stars.empty?
       response << "No available stars for this selection."
     else
       response << "Available Stars: \n #{available_stars}"
     end
-  when "dwarf"
+  when "dwarf", "dwarfs"
     available_stars = find_available_stars(stars, roll, "Worlds Edge Superleague", "Any")
     if available_stars.nil? || available_stars.empty?
       response << "No available stars for this selection."
     else
       response << "Available Stars: \n #{available_stars}"
     end
-  when "gnome"
+  when "gnome", "gnomes"
       available_stars = find_available_stars(stars, roll, "Halfling Thimble Cup", "Any")
       if available_stars.nil? || available_stars.empty?
         response << "No available stars for this selection."
       else
         response << "Available Stars: \n #{available_stars}"
       end
-  when "halfling", "human"
+  when "halfling", "halflings", "fling", "flings", "human", "humans"
       available_stars = find_available_stars(stars, roll, "Halfling Thimble Cup", "Old World Classic", "Any")
       if available_stars.nil? || available_stars.empty?
         response << "No available stars for this selection."
       else
         response << "Available Stars: \n #{available_stars}"
       end
-  when "nobility", "imperial", "imperialnobility", "ogre", "oldworldalliance", "oldworld", "owa"
+  when "nobility", "imperial", "imperialnobility", "noble", "nobles", "ogre", "ogres", "oldworldalliance", "oldworld", "owa"
       available_stars = find_available_stars(stars, roll, "Old World Classic", "Any")
       if available_stars.nil? || available_stars.empty?
         response << "No available stars for this selection."
@@ -498,7 +498,7 @@ def bot_answer_to(table, roll)
       else
         response << "Available Stars: \n #{available_stars}"
       end
-  when "necromantic", "necro", "necromantichorror", "shamblingundead", "undead", "vampire", "khemri", "tombkings"
+  when "necromantic", "necro", "necromantichorror", "shamblingundead", "undead", "shundead", "vampire", "vampires", "vamps", "khemri", "tombkings", "tombking", "tk"
       available_stars = find_available_stars(stars, roll, "Sylvanian Spotlight", "Any")
       if available_stars.nil? || available_stars.empty?
         response << "No available stars for this selection."
@@ -519,14 +519,14 @@ def bot_answer_to(table, roll)
       else
         response << "Available Stars: \n #{available_stars}"
       end
-  when "snotling", "skaven", "underworld", "underworlddenizens", "ud"
+  when "snotling", "snotlings", "skaven", "underworld", "underworlddenizens", "ud", "underworlddenizen"
       available_stars = find_available_stars(stars, roll, "Underworld Challenge", "Any")
       if available_stars.nil? || available_stars.empty?
         response << "No available stars for this selection."
       else
         response << "Available Stars: \n #{available_stars}"
       end
-  when "chaosdwarf", "chorf", "chorfs"
+  when "chaosdwarf", "chorf", "chorfs", "chaosdwarfs"
     available_stars = find_available_stars(stars, roll, "Favoured of Hashut", "Badlands Brawl", "Any", response)
     if available_stars.nil? || available_stars.empty?
       response << "No available stars for this selection."
