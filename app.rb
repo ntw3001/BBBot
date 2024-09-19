@@ -14,240 +14,242 @@ def client
   end
 end
 
-stars = [
-  {name: "Akhorne The Squirrel",
-  cost: 80,
-  rules: ['Any']
-  },
-  {name: "Barik Farblast",
-  cost: 80,
-  rules: ['Halfling Thimble Cup', 'Old World Classic', 'Worlds Edge Superleague']
-  },
-  {name: "Bilerot Vomitflesh",
-  cost: 180,
-  rules: ['Favoured of Nurgle']
-  },
-  {name: "The Black Gobbo",
-  cost: 225,
-  rules: ['Badlands Brawl', 'Underworld Challenge']
-  },
-  {name: "Boa Kon\'ssstriktr",
-  cost: 200,
-  rules: ['Lustrian Superleague']
-  },
-  {name: "Bomber Dribblesnot",
-  cost: 50,
-  rules: ['Badlands Brawl', 'Underworld Challenge']
-  },
-  {name: "Bryce \'The Slice\' Cambuel",
-  cost: 130,
-  rules: ['Sylvanian Spotlight']
-  },
-  {name: "\'Captain\' Karina Von Riesz",
-  cost: 230,
-  rules: ['Sylvanian Spotlight']
-  },
-  {name: "Count Luthor von Drakenborg",
-  cost: 340,
-  rules: ['Sylvanian Spotlight']
-  },
-  {name: "Cindy Piewhistle",
-  cost: 50,
-  rules: ['Halfling Thimble Cup', 'Old World Classic']
-  },
-  {name: "Deeproot Strongbranch",
-  cost: 280,
-  rules: ['Halfling Thimble Cup', 'Old World Classic']
-  },
-  {name: "Dribl and Drull",
-  cost: 190,
-  rules: ['Lustrian Superleague']
-  },
-  {name: "Eldril Sidewinder",
-  cost: 230,
-  rules: ['Elven Kingdoms League']
-  },
-  {name: "Estelle La Veneaux",
-  cost: 190,
-  rules: ['Lustrian Superleague']
-  },
-  {name: "Frank \'n\' Stein",
-  cost: 250,
-  rules: ['Old World Classic', 'Sylvanian Spotlight']
-  },
-  {name: "Fungus the Loon",
-  cost: 80,
-  rules: ['Badlands Brawl', 'Underworld Challenge']
-  },
-  {name: "Glart Smashrip",
-  cost: 195,
-  rules: ['Favoured of Khorne', 'Favoured of Nurgle', 'Favoured of Tzeentch', 'Favoured of Slaanesh', 'Favoured of Hashut', 'Favoured of Undivided', 'Underworld Challenge']
-  },
-  {name: "Gloriel Summerbloom",
-  cost: 150,
-  rules: ['Elven Kingdoms League']
-  },
-  {name: "Glotl Stop",
-  cost: 270,
-  rules: ['Lustrian Superleague']
-  },
-  {name: "Grak and Crumbleberry",
-  cost: 250,
-  rules: ['Any']
-  },
-  {name: "Grashnak Blackhoof",
-  cost: 250,
-  rules: ['Favoured of Khorne', 'Favoured of Nurgle', 'Favoured of Tzeentch', 'Favoured of Slaanesh', 'Favoured of Hashut', 'Favoured of Undivided']
-  },
-  {name: "Gretchen Wachter \'The Blood Bowl Widow\'",
-  cost:260,
-  rules: ['Sylvanian Spotlight']
-  },
-  {name: "Griff Oberwald",
-  cost: 280,
-  rules: ['Old World Classic', 'Halfling Thimble Cup']
-  },
-  {name: "Grim Ironjaw",
-  cost: 200,
-  rules: ['Halfling Thimble Cup', 'Old World Classic', 'Worlds Edge Superleague']
-  },
-  {name: "Hakflem Skuttlespike",
-  cost: 210,
-  rules: ['Favoured of Khorne', 'Favoured of Nurgle', 'Favoured of Tzeentch', 'Favoured of Slaanesh', 'Favoured of Hashut', 'Favoured of Undivided', 'Underworld Challenge']
-  },
-  {name: "Helmut Wulf",
-  cost: 140,
-  rules: ['Any']
-  },
-  {name: "Ivan \'the Animal\' Deathshroud",
-  cost: 190,
-  rules: ['Sylvanian Spotlight']
-  },
-  {name: "Ivar Eriksson",
-  cost: 245,
-  rules: ['Old World Classic']
-  },
-  {name: "Karla Von Kill",
-  cost: 210,
-  rules: ['Halfling Thimble Cup', 'Old World Classic', 'Lustrian Superleague']
-  },
-  {name: "Kiroth Krakeneye",
-  cost: 160,
-  rules: ['Elven Kingdoms League']
-  },
-  {name: "Kreek Rustgouger",
-  cost: 170,
-  rules: ['Favoured of Khorne', 'Favoured of Nurgle', 'Favoured of Tzeentch', 'Favoured of Slaanesh', 'Favoured of Hashut', 'Favoured of Undivided', 'Underworld Challenge']
-  },
-  {name: "Lord Borak The Despoiler",
-  cost: 260,
-  rules: ['Favoured of Khorne', 'Favoured of Nurgle', 'Favoured of Tzeentch', 'Favoured of Slaanesh', 'Favoured of Hashut', 'Favoured of Undivided']
-  },
-  {name: "Max Spleenripper - Khorne",
-  cost: 130,
-  rules: ['Favoured Of Khorne']
-  },
-  {name: "Mighty Zug",
-  cost: 220,
-  rules: ['Halfling Thimble Cup', 'Old World Classic', 'Lustrian Superleague']
-  },
-  {name: "Morg \'n\' Thorg",
-  cost: 380,
-  rules: ['Any']
-  },
-  {name: "Nobbla Blackwart",
-  cost: 120,
-  rules: ['Badlands Brawl', 'Underworld Challenge']
-  },
-  {name: "Puggy Baconbreath",
-  cost: 120,
-  rules: ['Halfing Thimble Cup', 'Old World Classic']
-  },
-  {name: "Ripper Bolgrot",
-  cost: 250,
-  rules: ['Badlands Brawl', 'Underworld Challenge']
-  },
-  {name: "Rodney Roachbait",
-  cost: 70,
-  rules: ['Halfling Thimble Cup']
-  },
-  {name: "Rowana Foresetfoot",
-  cost: 160,
-  rules: ['Halfling Thimble Cup']
-  },
-  {name: "Roxanna Darknail",
-  cost: 270,
-  rules: ['Elven Kingdoms League']
-  },
-  {name: "Rumbelow Sheepskin",
-  cost: 170,
-  rules: ['Halfling Thimble Cup', 'Old World Classic', 'Worlds Edge Superleague']
-  },
-  {name: "Scrappa Sorehead",
-  cost: 130,
-  rules: ['Badlands Brawl', 'Underworld Challenge']
-  },
-  {name: "Scyla Anfingrimm - Khorne",
-  cost: 200,
-  rules: ['Favoured Of Khorne']
-  },
-  {name: "Skitter Stab-Stab",
-  cost: 250,
-  rules: ['Old World Classic']
-  },
-  {name: "Skrull Halfheight",
-  cost: 150,
-  rules: ['Sylvanian Spotlight', 'Worlds Edge Superleague']
-  },
-  {name: "Lucian and Valen Swift",
-  cost: 340,
-  rules: ['Elven Kingdoms League']
-  },
-  {name: "Thorsson Stoutmead",
-  cost: 170,
-  rules: ['Old World Classic']
-  },
-  {name: "Varag Ghoul-Chewer",
-  cost: 280,
-  rules: ['Badlands Brawl', 'Underworld Challenge']
-  },
-  {name: "Grombrindal, the White Dwarf",
-  cost: 210,
-  rules: ['Halfing Thimble Cup', 'Old World Classic', 'Worlds Edge Superleague', "Lustrian Superleague"]
-  },
-  {name: "Wilhelm Chaney",
-  cost: 220,
-  rules: ['Sylvanian Spotlight']
-  },
-  {name: "Willow Rosebark",
-  cost: 150,
-  rules: ['Elven Kingdoms League']
-  },
-  {name: "Withergrasp Doubledrool",
-  cost: 170,
-  rules: ['Favoured of Khorne', 'Favoured of Nurgle', 'Favoured of Tzeentch', 'Favoured of Slaanesh', 'Favoured of Hashut', 'Favoured of Undivided']
-  },
-  {name: "Zolcath the Zoat",
-  cost: 230,
-  rules: ['Lustrian Superleague', 'Elven Kingdoms League']
-  },
-  {name: "Zzharg Madeye",
-  cost: 0,
-  rules: ['Favoured of Hashut', 'Badlands Brawl']
-  },
-  {name: "Hthark the Unstoppable",
-  cost: 300,
-  rules: ['Favoured of Hashut', 'Badlands Brawl']
-  },
-  {name: "Rashnak Backstabber",
-  cost: 130,
-  rules: ['Badlands Brawl']
-  },
-]
+
 
 def bot_answer_to(table, roll)
   log("Bot function started.")
   return "Please provide a valid roll or petty cash value." if roll.nil? || roll.to_i.zero?
+  
+  stars = [
+    {name: "Akhorne The Squirrel",
+    cost: 80,
+    rules: ['Any']
+    },
+    {name: "Barik Farblast",
+    cost: 80,
+    rules: ['Halfling Thimble Cup', 'Old World Classic', 'Worlds Edge Superleague']
+    },
+    {name: "Bilerot Vomitflesh",
+    cost: 180,
+    rules: ['Favoured of Nurgle']
+    },
+    {name: "The Black Gobbo",
+    cost: 225,
+    rules: ['Badlands Brawl', 'Underworld Challenge']
+    },
+    {name: "Boa Kon\'ssstriktr",
+    cost: 200,
+    rules: ['Lustrian Superleague']
+    },
+    {name: "Bomber Dribblesnot",
+    cost: 50,
+    rules: ['Badlands Brawl', 'Underworld Challenge']
+    },
+    {name: "Bryce \'The Slice\' Cambuel",
+    cost: 130,
+    rules: ['Sylvanian Spotlight']
+    },
+    {name: "\'Captain\' Karina Von Riesz",
+    cost: 230,
+    rules: ['Sylvanian Spotlight']
+    },
+    {name: "Count Luthor von Drakenborg",
+    cost: 340,
+    rules: ['Sylvanian Spotlight']
+    },
+    {name: "Cindy Piewhistle",
+    cost: 50,
+    rules: ['Halfling Thimble Cup', 'Old World Classic']
+    },
+    {name: "Deeproot Strongbranch",
+    cost: 280,
+    rules: ['Halfling Thimble Cup', 'Old World Classic']
+    },
+    {name: "Dribl and Drull",
+    cost: 190,
+    rules: ['Lustrian Superleague']
+    },
+    {name: "Eldril Sidewinder",
+    cost: 230,
+    rules: ['Elven Kingdoms League']
+    },
+    {name: "Estelle La Veneaux",
+    cost: 190,
+    rules: ['Lustrian Superleague']
+    },
+    {name: "Frank \'n\' Stein",
+    cost: 250,
+    rules: ['Old World Classic', 'Sylvanian Spotlight']
+    },
+    {name: "Fungus the Loon",
+    cost: 80,
+    rules: ['Badlands Brawl', 'Underworld Challenge']
+    },
+    {name: "Glart Smashrip",
+    cost: 195,
+    rules: ['Favoured of Khorne', 'Favoured of Nurgle', 'Favoured of Tzeentch', 'Favoured of Slaanesh', 'Favoured of Hashut', 'Favoured of Undivided', 'Underworld Challenge']
+    },
+    {name: "Gloriel Summerbloom",
+    cost: 150,
+    rules: ['Elven Kingdoms League']
+    },
+    {name: "Glotl Stop",
+    cost: 270,
+    rules: ['Lustrian Superleague']
+    },
+    {name: "Grak and Crumbleberry",
+    cost: 250,
+    rules: ['Any']
+    },
+    {name: "Grashnak Blackhoof",
+    cost: 250,
+    rules: ['Favoured of Khorne', 'Favoured of Nurgle', 'Favoured of Tzeentch', 'Favoured of Slaanesh', 'Favoured of Hashut', 'Favoured of Undivided']
+    },
+    {name: "Gretchen Wachter \'The Blood Bowl Widow\'",
+    cost:260,
+    rules: ['Sylvanian Spotlight']
+    },
+    {name: "Griff Oberwald",
+    cost: 280,
+    rules: ['Old World Classic', 'Halfling Thimble Cup']
+    },
+    {name: "Grim Ironjaw",
+    cost: 200,
+    rules: ['Halfling Thimble Cup', 'Old World Classic', 'Worlds Edge Superleague']
+    },
+    {name: "Hakflem Skuttlespike",
+    cost: 210,
+    rules: ['Favoured of Khorne', 'Favoured of Nurgle', 'Favoured of Tzeentch', 'Favoured of Slaanesh', 'Favoured of Hashut', 'Favoured of Undivided', 'Underworld Challenge']
+    },
+    {name: "Helmut Wulf",
+    cost: 140,
+    rules: ['Any']
+    },
+    {name: "Ivan \'the Animal\' Deathshroud",
+    cost: 190,
+    rules: ['Sylvanian Spotlight']
+    },
+    {name: "Ivar Eriksson",
+    cost: 245,
+    rules: ['Old World Classic']
+    },
+    {name: "Karla Von Kill",
+    cost: 210,
+    rules: ['Halfling Thimble Cup', 'Old World Classic', 'Lustrian Superleague']
+    },
+    {name: "Kiroth Krakeneye",
+    cost: 160,
+    rules: ['Elven Kingdoms League']
+    },
+    {name: "Kreek Rustgouger",
+    cost: 170,
+    rules: ['Favoured of Khorne', 'Favoured of Nurgle', 'Favoured of Tzeentch', 'Favoured of Slaanesh', 'Favoured of Hashut', 'Favoured of Undivided', 'Underworld Challenge']
+    },
+    {name: "Lord Borak The Despoiler",
+    cost: 260,
+    rules: ['Favoured of Khorne', 'Favoured of Nurgle', 'Favoured of Tzeentch', 'Favoured of Slaanesh', 'Favoured of Hashut', 'Favoured of Undivided']
+    },
+    {name: "Max Spleenripper - Khorne",
+    cost: 130,
+    rules: ['Favoured Of Khorne']
+    },
+    {name: "Mighty Zug",
+    cost: 220,
+    rules: ['Halfling Thimble Cup', 'Old World Classic', 'Lustrian Superleague']
+    },
+    {name: "Morg \'n\' Thorg",
+    cost: 380,
+    rules: ['Any']
+    },
+    {name: "Nobbla Blackwart",
+    cost: 120,
+    rules: ['Badlands Brawl', 'Underworld Challenge']
+    },
+    {name: "Puggy Baconbreath",
+    cost: 120,
+    rules: ['Halfing Thimble Cup', 'Old World Classic']
+    },
+    {name: "Ripper Bolgrot",
+    cost: 250,
+    rules: ['Badlands Brawl', 'Underworld Challenge']
+    },
+    {name: "Rodney Roachbait",
+    cost: 70,
+    rules: ['Halfling Thimble Cup']
+    },
+    {name: "Rowana Foresetfoot",
+    cost: 160,
+    rules: ['Halfling Thimble Cup']
+    },
+    {name: "Roxanna Darknail",
+    cost: 270,
+    rules: ['Elven Kingdoms League']
+    },
+    {name: "Rumbelow Sheepskin",
+    cost: 170,
+    rules: ['Halfling Thimble Cup', 'Old World Classic', 'Worlds Edge Superleague']
+    },
+    {name: "Scrappa Sorehead",
+    cost: 130,
+    rules: ['Badlands Brawl', 'Underworld Challenge']
+    },
+    {name: "Scyla Anfingrimm - Khorne",
+    cost: 200,
+    rules: ['Favoured Of Khorne']
+    },
+    {name: "Skitter Stab-Stab",
+    cost: 250,
+    rules: ['Old World Classic']
+    },
+    {name: "Skrull Halfheight",
+    cost: 150,
+    rules: ['Sylvanian Spotlight', 'Worlds Edge Superleague']
+    },
+    {name: "Lucian and Valen Swift",
+    cost: 340,
+    rules: ['Elven Kingdoms League']
+    },
+    {name: "Thorsson Stoutmead",
+    cost: 170,
+    rules: ['Old World Classic']
+    },
+    {name: "Varag Ghoul-Chewer",
+    cost: 280,
+    rules: ['Badlands Brawl', 'Underworld Challenge']
+    },
+    {name: "Grombrindal, the White Dwarf",
+    cost: 210,
+    rules: ['Halfing Thimble Cup', 'Old World Classic', 'Worlds Edge Superleague', "Lustrian Superleague"]
+    },
+    {name: "Wilhelm Chaney",
+    cost: 220,
+    rules: ['Sylvanian Spotlight']
+    },
+    {name: "Willow Rosebark",
+    cost: 150,
+    rules: ['Elven Kingdoms League']
+    },
+    {name: "Withergrasp Doubledrool",
+    cost: 170,
+    rules: ['Favoured of Khorne', 'Favoured of Nurgle', 'Favoured of Tzeentch', 'Favoured of Slaanesh', 'Favoured of Hashut', 'Favoured of Undivided']
+    },
+    {name: "Zolcath the Zoat",
+    cost: 230,
+    rules: ['Lustrian Superleague', 'Elven Kingdoms League']
+    },
+    {name: "Zzharg Madeye",
+    cost: 0,
+    rules: ['Favoured of Hashut', 'Badlands Brawl']
+    },
+    {name: "Hthark the Unstoppable",
+    cost: 300,
+    rules: ['Favoured of Hashut', 'Badlands Brawl']
+    },
+    {name: "Rashnak Backstabber",
+    cost: 130,
+    rules: ['Badlands Brawl']
+    },
+  ]
 
   response = []
 
@@ -553,7 +555,7 @@ def find_available_stars(stars, roll, *rules, response)
 
   response << "Available stars found: #{available_stars.inspect}"
 
-  available_stars.empty? ? "No available stars for this selection." : available_stars.map { |star| "#{star[:name]}: #{star[:cost]}k" }.join(", ")
+  available_stars.empty? ? "No available stars for this selection." : available_stars.map { |star| "#{star[:name]}: #{star[:cost]}k" }.join("\n")
 end
 
 
