@@ -20,7 +20,7 @@ def bot_answer_to(table, roll)
   log("Bot function started.")
   return "Please provide a valid roll or petty cash value." if roll.nil? || roll.to_i.zero?
 
-  stars = [
+  all_stars = [
     {name: "Akhorne The Squirrel",
     cost: 80,
     rules: ['Any']
@@ -250,6 +250,8 @@ def bot_answer_to(table, roll)
     rules: ['Badlands Brawl']
     },
   ]
+
+  stars = all_stars. sort_by{ |star| star[:cost] }
 
   response = []
 
@@ -529,7 +531,6 @@ def bot_answer_to(table, roll)
     if available_stars.nil? || available_stars.empty?
       response << "No available stars for this selection."
     else
-      available_stars.sort_by! { |star| star[:cost] }
       response << "Available Stars: \n #{available_stars}"
     end
   else
