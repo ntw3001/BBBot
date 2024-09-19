@@ -291,7 +291,6 @@ def bot_answer_to(table, roll)
   when "chaosdwarf", "chorf"
     available_stars = "fff"
     response << available_stars
-    end
   else
     response << "Send a request in the format '[table] [number]'. For example, send 'summer 6'. For star players, send '[team] [cash]'."
   end
