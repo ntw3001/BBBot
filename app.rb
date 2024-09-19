@@ -15,11 +15,13 @@ def client
 end
 
 def bot_answer_to(table, roll)
+  log("Bot function started.")
   return "Please provide a valid roll or petty cash value." if roll.nil? || roll.to_i.zero?
 
   response = []
 
   response << "Input: #{table} #{roll}"
+  log("#{table} #{roll}")
 
   case table
   when "weather"
@@ -289,11 +291,17 @@ def bot_answer_to(table, roll)
     else
       response << available_stars
     end
-  when "chaosdwarf", "chorf"
+  when "chaosdwarf", "chorf", "chorfs"
     log("Processing chorfs")
     available_stars = find_available_stars(stars, roll, "Favoured of Hashut", "Badlands Brawl", "Any")
-    log("Available stars: #{available_stars}")
-    response << "Available Stars: #{available_stars}"
+
+    if available_stars.nil? || available_stars.empty?
+      log("No available stars found.")
+      response << "No available stars for this selection."
+    else
+      log("Available stars: #{available_stars}")
+      response << "Available Stars: #{available_stars}"
+    end
   else
     response << "Invalid input."
   end

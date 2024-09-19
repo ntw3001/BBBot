@@ -1,6 +1,6 @@
 def log(message)
   File.open('debug.log', 'a') do |file|
-    file.puts(message)
+    file.puts("#{Time.now}: #{message}")
   end
 end
 
