@@ -547,7 +547,11 @@ def find_available_stars(stars, roll, *rules, response)
   roll = roll.to_i
   return "Invalid roll" if roll <= 0
   available_stars = stars.select do |star|
-    star[:cost] <= roll && rules.any? { |rule| star[:rules].include?(rule) && !(star[:name].include?("Morg \'n\' Thorg") && rules.include?("Sylvanian Spotlight")) }
+    star[:cost] <= roll &&
+    rules.any? { |rule| star[:rules].include?(rule) &&
+    !(star[:name] == "Morg 'n' Thorg" && rules.include?("Sylvanian Spotlight"))
+
+    }
   end
   available_stars.empty? ? "No available stars for this selection." : available_stars.map { |star| "#{star[:name]}: #{star[:cost]}k" }.join("\n")
 end
