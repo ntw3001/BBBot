@@ -525,36 +525,27 @@ def bot_answer_to(table, roll)
       response << available_stars
     end
   when "chaosdwarf", "chorf", "chorfs"
-    log("Processing chorfs")
     available_stars = find_available_stars(stars, roll, "Favoured of Hashut", "Badlands Brawl", "Any", response)
-
     if available_stars.nil? || available_stars.empty?
-      log("No available stars found.")
       response << "No available stars for this selection."
     else
-      log("Available stars: #{available_stars}")
-      response << "Available Stars: #{available_stars}"
+      available_stars.sort_by! { |star| star[:cost] }
+      response << "Available Stars: \n #{available_stars}"
     end
   else
     response << "Invalid input."
   end
-  log("Response generated: #{response.join("\n")}")
   return response.join("\n")
 end
 
 
 
 def find_available_stars(stars, roll, *rules, response)
-  # response << "find_available_stars called with roll: #{roll}, rules: #{rules.join(', ')}"
   roll = roll.to_i
   return "Invalid roll" if roll <= 0
-
   available_stars = stars.select do |star|
-    star[:cost] <= roll && rules.any? { |rule| star[:rules].include?(rule) }
+    star[:cost] <= roll && rules.any? { |rule| star[:rules].include?(rule) && !(star[:name].include?("Morg \'n\' Thorg") && rules.include?("Sylvanian Spotlight")) }
   end
-
-  # response << "Available stars found: #{available_stars.inspect}"
-
   available_stars.empty? ? "No available stars for this selection." : available_stars.map { |star| "#{star[:name]}: #{star[:cost]}k" }.join("\n")
 end
 
