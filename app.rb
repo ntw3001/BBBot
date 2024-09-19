@@ -449,14 +449,14 @@ def bot_answer_to(table, roll)
     else
       response << "Available Stars: \n #{available_stars}"
     end
-  when "chaos", "chosen", "chaoschosen", "renegade", "renegades",, "chaosrenegades", "chaosrenegade"
+  when "chaos", "chosen", "chaoschosen", "renegade", "renegades", "chaosrenegades", "chaosrenegade"
     available_stars = find_available_stars(stars, roll, "Favoured of...", "Favoured of Nurgle", "Favoured of Tzeentch", "Favoured of Slaanesh", "Favoured of Khorne", "Favoured of Undivided", "Any")
     if available_stars.nil? || available_stars.empty?
       response << "No available stars for this selection."
     else
       response << "Available Stars: \n #{available_stars}"
     end
-  when "darkelf", "darkelves", "delf", "delves", "elvenunion", "elf", "elves", "pelves", "pelf" "proelf", "proelves" "highelf", "highelves", "helf", "helves", "woodelf", "woodelves", "welf", "welves"
+  when "darkelf", "darkelves", "delf", "delves", "elvenunion", "elf", "elves", "pelves", "pelf", "proelf", "proelves", "highelf", "highelves", "helf", "helves", "woodelf", "woodelves", "welf", "welves"
     available_stars = find_available_stars(stars, roll, "Elven Kingdoms League", "Any")
     if available_stars.nil? || available_stars.empty?
       response << "No available stars for this selection."
