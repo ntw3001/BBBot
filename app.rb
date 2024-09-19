@@ -282,15 +282,15 @@ def bot_answer_to(table, roll)
     else
       response << available_stars
     end
-  when "chaosdwarf", "chorf"
-    available_stars = "hhh"
-    # find_available_stars(stars, cash, "Favoured of Hashut", "Badlands Brawl", "Any")
+  # when "chaosdwarf", "chorf"
+  #   available_stars = "hhh"
+  #   # find_available_stars(stars, cash, "Favoured of Hashut", "Badlands Brawl", "Any")
 
-    # if available_stars.nil? || available_stars.empty?
-    #   response << "No available stars for this selection."
-    # else
-      response << available_stars
-    end
+  #   # if available_stars.nil? || available_stars.empty?
+  #   #   response << "No available stars for this selection."
+  #   # else
+  #   response << available_stars
+  #   end
   else
     response << "Send a request in the format '[table] [number]'. For example, send 'summer 6'. For star players, send '[team] [cash]'."
   end
