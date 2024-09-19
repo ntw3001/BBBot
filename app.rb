@@ -287,12 +287,14 @@ def bot_answer_to(table, roll)
       response << available_stars
     end
   when "chaosdwarf", "chorf"
+    response << "Roll: #{roll}"
+    response << "Rules: #{rules.join(', ')}"
     available_stars = find_available_stars(stars, roll, "Favoured of Hashut", "Badlands Brawl", "Any")
-    response << available_stars
+    response << "Available Stars: #{available_stars}"
   else
     response << "Send a request in the format '[table] [number]'. For example, send 'summer 6'. For star players, send '[team] [cash]'."
   end
-  response.join("\n")
+  return response.join("\n")
 end
 
 stars = [
