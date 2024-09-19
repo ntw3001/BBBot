@@ -477,14 +477,14 @@ def bot_answer_to(table, roll)
       else
         response << "Available Stars: \n #{available_stars}"
       end
-  when "halfling", "halflings", "fling", "flings", "human", "humans"
+  when "halfling", "halflings", "fling", "flings"
       available_stars = find_available_stars(stars, roll, "Halfling Thimble Cup", "Old World Classic", "Any")
       if available_stars.nil? || available_stars.empty?
         response << "No available stars for this selection."
       else
         response << "Available Stars: \n #{available_stars}"
       end
-  when "nobility", "imperial", "imperialnobility", "noble", "nobles", "ogre", "ogres", "oldworldalliance", "oldworld", "owa"
+  when "nobility", "imperial", "imperialnobility", "noble", "nobles", "ogre", "ogres", "oldworldalliance", "oldworld", "owa", "human", "humans"
       available_stars = find_available_stars(stars, roll, "Old World Classic", "Any")
       if available_stars.nil? || available_stars.empty?
         response << "No available stars for this selection."
