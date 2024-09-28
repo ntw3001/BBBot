@@ -238,7 +238,7 @@ def bot_answer_to(table, roll)
     rules: ['Lustrian Superleague', 'Elven Kingdoms League']
     },
     {name: "Zzharg Madeye",
-    cost: 0,
+    cost: 130,
     rules: ['Favoured of Hashut', 'Badlands Brawl']
     },
     {name: "Hthark the Unstoppable",
