@@ -25,6 +25,10 @@ def bot_answer_to(table, roll)
     cost: 80,
     rules: ['Any']
     },
+    {name: "Anqi Panqi",
+    cost: 190,
+    rules: ["Lustrian Superleague"]
+    },
     {name: "Barik Farblast",
     cost: 80,
     rules: ['Halfling Thimble Cup', 'Old World Classic', 'Worlds Edge Superleague']
@@ -117,6 +121,14 @@ def bot_answer_to(table, roll)
     cost: 200,
     rules: ['Halfling Thimble Cup', 'Old World Classic', 'Worlds Edge Superleague']
     },
+    {name: "Guffle Pusmaw",
+    cost: 180,
+    rules: ['Favoured of Nurgle']
+    },
+    {name: "H\'thark the Unstoppable",
+    cost: 300,
+    rules: ['Favoured of Hashut', 'Badlands Brawl']
+    },
     {name: "Hakflem Skuttlespike",
     cost: 210,
     rules: ['Favoured of Khorne', 'Favoured of Nurgle', 'Favoured of Tzeentch', 'Favoured of Slaanesh', 'Favoured of Hashut', 'Favoured of Undivided', 'Underworld Challenge']
@@ -132,6 +144,14 @@ def bot_answer_to(table, roll)
     {name: "Ivar Eriksson",
     cost: 245,
     rules: ['Old World Classic']
+    },
+    {name: "Jeremiah Kool",
+    cost: 320,
+    rules: ['Elven Kingdoms League']
+    },
+    {name: "Jordell Freshbreeze",
+    cost: 250,
+    rules: ['Elven Kingdoms League']
     },
     {name: "Karla Von Kill",
     cost: 210,
@@ -149,7 +169,11 @@ def bot_answer_to(table, roll)
     cost: 260,
     rules: ['Favoured of Khorne', 'Favoured of Nurgle', 'Favoured of Tzeentch', 'Favoured of Slaanesh', 'Favoured of Hashut', 'Favoured of Undivided']
     },
-    {name: "Max Spleenripper - Khorne",
+    {name: "Maple Highgrove",
+    cost: 210,
+    rules: ['Elven Kingdoms League', 'Halfling Thimble Cup', 'Old World Classic']
+    },
+    {name: "Max Spleenripper (Favoured of Khorne only)",
     cost: 130,
     rules: ['Favoured Of Khorne']
     },
@@ -168,6 +192,10 @@ def bot_answer_to(table, roll)
     {name: "Puggy Baconbreath",
     cost: 120,
     rules: ['Halfing Thimble Cup', 'Old World Classic']
+    },
+    {name: "Rashnak Backstabber",
+    cost: 130,
+    rules: ['Badlands Brawl']
     },
     {name: "Ripper Bolgrot",
     cost: 250,
@@ -193,13 +221,17 @@ def bot_answer_to(table, roll)
     cost: 130,
     rules: ['Badlands Brawl', 'Underworld Challenge']
     },
-    {name: "Scyla Anfingrimm - Khorne",
+    {name: "Scyla Anfingrimm (Favoured of Khorne only)",
     cost: 200,
     rules: ['Favoured Of Khorne']
     },
     {name: "Skitter Stab-Stab",
     cost: 250,
     rules: ['Favoured of Khorne', 'Favoured of Nurgle', 'Favoured of Tzeentch', 'Favoured of Slaanesh', 'Favoured of Hashut', 'Favoured of Undivided', 'Underworld Challenge']
+    },
+    {name: "Skrorg Snowpelt",
+    cost: 250,
+    rules: ['Old World Classic']
     },
     {name: "Skrull Halfheight",
     cost: 150,
@@ -208,6 +240,10 @@ def bot_answer_to(table, roll)
     {name: "Lucian and Valen Swift",
     cost: 340,
     rules: ['Elven Kingdoms League']
+    },
+    {name: "Swiftvine Glimmershard",
+    cost: 110,
+    rules: ['Halfling Thimble Cup', 'Elven Kingdoms League']
     },
     {name: "Thorsson Stoutmead",
     cost: 170,
@@ -240,14 +276,6 @@ def bot_answer_to(table, roll)
     {name: "Zzharg Madeye",
     cost: 130,
     rules: ['Favoured of Hashut', 'Badlands Brawl']
-    },
-    {name: "Hthark the Unstoppable",
-    cost: 300,
-    rules: ['Favoured of Hashut', 'Badlands Brawl']
-    },
-    {name: "Rashnak Backstabber",
-    cost: 130,
-    rules: ['Badlands Brawl']
     },
   ]
 
