@@ -443,7 +443,7 @@ def bot_answer_to(table, roll)
     else
       response << "Available Stars: \n#{available_stars}"
     end
-  when "halflingthimblecup", "htc", "thimblecup", "thimble", "halflingcup"
+  when "halflingthimblecup", "htc", "thimblecup", "thimble", "halflingcup", "tc"
       available_stars = find_available_stars(stars, roll, "Halfling Thimble Cup", "Any")
       if available_stars.nil? || available_stars.empty?
         response << "No available stars for this selection."
@@ -487,7 +487,7 @@ def bot_answer_to(table, roll)
     end
 
   else
-      response << "Please send a message in the format \"[table] [number]\"\n\n.Available tables are: weather, kickoff, prayers, injury, casualty, chaosclash (cc), elvenkingdomsleague (ekl), lustriansuperleague (lsl), worldsedgesuperleague (wesl), halflingthimblecup (htc), woodlandleague (wl), underworldchallenge (uwc), oldworldclassic (owc), sylvanianspotlight (ss).\n\n For referencing tables, the number should be the roll on the table. For checking available stars, the number should be the available inducement money.\n\nFor example, send \"weather 6\" or \"owc 180\". Rolls which are not available on a table (eg. \"weather 16\" will result in the full table being displayed)."
+      response << "Please send a message in the format \"[table] [number]\".\n\nAvailable tables are:\nweather\nkickoff\nprayers\ninjury\ncasualty\nbdlands (bb)\nchaos (cc)\nelven (ekl)\nlustria (ls)\nworldsedgesuperleague (wes)\nthimblecup (htc)\nwoodland (wl)\nunderworld (uwc)\noldworld (owc)\nsylvanian (ss)\n\nThe number should either be the value rolled on a table or the available inducement money for a team.\n\nFor example, send \"weather 6\" or \"owc 180\". If no roll value is given, the full table will be shown."
   end
 
   return response.join("\n")
