@@ -487,7 +487,7 @@ def bot_answer_to(table, roll)
     end
 
   else
-      response << "Please send a message in the format \"[table] [number]\".\n\nAvailable tables are:\nweather\nkickoff\nprayers\ninjury\ncasualty\nbdlands (bb)\nchaos (cc)\nelven (ekl)\nlustria (ls)\nworldsedgesuperleague (wes)\nthimblecup (htc)\nwoodland (wl)\nunderworld (uwc)\noldworld (owc)\nsylvanian (ss)\n\nThe number should either be the value rolled on a table or the available inducement money for a team.\n\nFor example, send \"weather 6\" or \"owc 180\". If no roll value is given, the full table will be shown."
+      response << "Please send a message in the format \"[table] [number]\".\n\nAvailable tables are:\nweather\nkickoff\nprayers\ninjury\ncasualty\nbadlands (bb)\nchaos (cc)\nelven (ekl)\nlustria (ls)\nworldsedge (wes)\nthimblecup (htc)\nwoodland (wl)\nunderworld (uwc)\noldworld (owc)\nsylvanian (ss)\n\nThe number should either be the value rolled on a table or the available inducement money for a team.\n\nFor example, send \"weather 6\" or \"owc 180\". If no roll value is given, the full table will be shown."
   end
 
   return response.join("\n")
