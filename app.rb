@@ -213,10 +213,10 @@ def bot_answer_to(table, roll)
     cost: 70,
     rules: ['Woodland League']
     },
-    # {name: "Rowana Forestfoot",
-    # cost: 160,
-    # rules: ['Woodland League']
-    # },
+    {name: "Rowana Forestfoot",
+    cost: 160,
+    rules: ['Woodland League']
+    },
     {name: "Roxanna Darknail",
     cost: 270,
     rules: ['Elven Kingdoms League']
